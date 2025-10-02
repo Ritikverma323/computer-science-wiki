@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Computer Networks | CS Docs</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600&display=swap" rel="stylesheet">
+    <script src="https://kit.fontawesome.com/a076d05399.js" crossorigin="anonymous"></script>
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+    <header>
+        <h1>📡 Computer Networks</h1>
+        <a href="../../index.html">Go to Main Page 📄</a>
+    </header>
+
+    <main>
+        <!-- Sidebar -->
+        <nav class="sidebar">
+            <h2>📑 Documentation</h2>
+            <ul>
+                <li><a href="intro.html">Introduction</a></li>
+                <li><a href="types.html">Types of Networks</a></li>
+                <li><a href="models.html">Network Models</a></li>
+                <li><a href="devices.html">Network Devices</a></li>
+                <li><a href="protocols.html">Protocols</a></li>
+                <li><a href="security.html">Network Security</a></li>
+            </ul>
+        </nav>
+
+        <!-- Content -->
+        <article>
+            <h1>Welcome to Computer Networks Docs</h1>
+            <p>
+                This documentation is designed for Computer Science students to learn
+                about <strong>Computer Networks</strong> in a structured way.
+            </p>
+            <p>
+                Use the sidebar to navigate through topics like OSI & TCP/IP models,
+                types of networks, devices, and protocols.
+            </p>
+            <p>
+                Each section has examples, diagrams, and simple explanations.
+            </p>
+        </article>
+    </main>
+
+    <footer>
+        <p>© 2025 CS Docs. Built for learning 📘</p>
+    </footer>
+
+    <script>
+        const toggle = document.getElementById('theme-toggle');
+        toggle.addEventListener('click', () => {
+            document.body.classList.toggle('dark');
+            localStorage.setItem('theme', document.body.classList.contains('dark') ? 'dark' : 'light');
+        });
+
+        // Load saved theme
+        if (localStorage.getItem('theme') === 'dark') {
+            document.body.classList.add('dark');
+        }
+    </script>
+</body>
+
+</html>

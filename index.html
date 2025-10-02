@@ -1,22 +1,17 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>Computer Science Notes</title>
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="stylesheet" href="css/style.css">
-  <link
-    href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600&display=swap"
-    rel="stylesheet"
-  />
-  <script
-    src="https://kit.fontawesome.com/3e2b676f17.js"
-    crossorigin="anonymous"
-    defer
-  ></script>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600&display=swap" rel="stylesheet" />
+  <script src="https://kit.fontawesome.com/3e2b676f17.js" crossorigin="anonymous" defer></script>
 
 </head>
+
 <body>
   <header class="mobile-header" aria-label="Mobile Header">
     <button class="menu-toggle" aria-label="Open menu" aria-expanded="false" aria-controls="mobile-menu">
@@ -41,6 +36,11 @@
         <li class="nav-item" tabindex="0"><i class="fas fa-code"></i> Programming</li>
         <li class="nav-item" tabindex="0"><i class="fas fa-network-wired"></i> Networks</li>
         <li class="nav-item" tabindex="0"><i class="fas fa-microchip"></i> Systems</li>
+        <li class="nav-item">
+          <i class="fas fa-network-wired"></i>
+          <a href="./notes/networks/index.html" rel="noopener noreferrer">Computer
+            Networks</a>
+        </li>
       </ul>
     </nav>
 
@@ -49,13 +49,8 @@
         <h2>Featured Notes</h2>
         <div class="search-container" role="search">
           <i class="fas fa-search search-icon" aria-hidden="true"></i>
-          <input
-            class="search-input"
-            type="search"
-            aria-label="Search notes"
-            placeholder="Search notes..."
-            autocomplete="off"
-          />
+          <input class="search-input" type="search" aria-label="Search notes" placeholder="Search notes..."
+            autocomplete="off" />
         </div>
       </div>
 
@@ -102,6 +97,13 @@
       <section aria-label="Recent Notes" style="margin-top: 2rem;">
         <h2>Recent Notes</h2>
         <div class="recent-notes-grid">
+          <a href="./notes/networks/index.html" rel="noopener noreferrer">
+            <article class="note-card">
+              <h4>Computer Networks</h4>
+              <p>Learn the basics of computer networks, types, models, and devices.</p>
+              <time class="note-date" datetime="2025-10-03">Oct 3, 2025</time>
+            </article>
+          </a>
           <article class="note-card" tabindex="0" role="article" aria-label="Note about Dynamic Programming">
             <h4>Dynamic Programming</h4>
             <p>Understand how to break problems into subproblems to optimize computations.</p>
@@ -113,12 +115,12 @@
             <time class="note-date" datetime="2025-08-20">Aug 20, 2025</time>
           </article>
           <a href="./notes/os/operating-system.html" target="_blank" rel="noopener noreferrer">
-          <article class="note-card" tabindex="0" role="article" aria-label="Note about Operating Systems">
-            <h4>Operating Systems</h4>
-            <p>Explore processes, threads, and memory management basics.</p>
-            <time class="note-date" datetime="2025-07-10">Jul 10, 2025</time>
-          </article>
-                    </a>
+            <article class="note-card" tabindex="0" role="article" aria-label="Note about Operating Systems">
+              <h4>Operating Systems</h4>
+              <p>Explore processes, threads, and memory management basics.</p>
+              <time class="note-date" datetime="2025-07-10">Jul 10, 2025</time>
+            </article>
+          </a>
           <article class="note-card" tabindex="0" role="article" aria-label="Note about Data Structures">
             <h4>Data Structures</h4>
             <p>Review trees, graphs, and hash tables for efficient data storage.</p>
@@ -181,4 +183,5 @@
     });
   </script>
 </body>
+
 </html>
