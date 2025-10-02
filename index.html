@@ -1,256 +1,183 @@
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>Computer Science Notes</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="stylesheet" href="css/style.css">
-  <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+  <link
+    href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600&display=swap"
+    rel="stylesheet"
+  />
+  <script
+    src="https://kit.fontawesome.com/3e2b676f17.js"
+    crossorigin="anonymous"
+    defer
+  ></script>
+
 </head>
 <body>
-  <!-- Mobile Header -->
-  <header class="mobile-header">
-    <div class="mobile-header-content">
-      <button class="menu-toggle" onclick="toggleMobileMenu()">
-        <i class="fas fa-bars"></i>
-      </button>
-      <h1>Computer Science Notes</h1>
-      <div class="theme-toggle" onclick="toggleTheme()">
-        <i class="fas fa-sun sun-icon"></i>
-        <i class="fas fa-moon moon-icon"></i>
-      </div>
-    </div>
-    
-    <!-- Mobile Search -->
-    <div class="mobile-search">
-      <div class="search-container">
-        <i class="fas fa-search search-icon"></i>
-        <input type="text" placeholder="Search Notes" class="search-input">
-      </div>
-      <div class="mobile-nav-buttons">
-        <button class="nav-btn active">
-          <i class="fas fa-sort-amount-down"></i>
-          Sort
-        </button>
-        <button class="nav-btn">
-          <i class="fas fa-compass"></i>
-          Navigation
-        </button>
-      </div>
-    </div>
+  <header class="mobile-header" aria-label="Mobile Header">
+    <button class="menu-toggle" aria-label="Open menu" aria-expanded="false" aria-controls="mobile-menu">
+      <i class="fas fa-bars"></i>
+    </button>
+    <h1>CS Notes</h1>
+    <button class="theme-toggle" aria-label="Toggle dark mode">
+      <i class="fas fa-moon moon-icon"></i>
+      <i class="fas fa-sun sun-icon"></i>
+    </button>
   </header>
 
-  <!-- Desktop Layout -->
-  <div class="desktop-layout">
-    <!-- Sidebar -->
-    <aside class="sidebar">
+  <div class="desktop-layout" role="main">
+    <nav class="sidebar" aria-label="Primary Navigation">
       <div class="sidebar-header">
-        <h2>Computer Science Notes</h2>
-        <div class="theme-toggle desktop-theme-toggle" onclick="toggleTheme()">
-          <i class="fas fa-sun sun-icon"></i>
-          <i class="fas fa-moon moon-icon"></i>
+        <h2>CS Notes</h2>
+      </div>
+      <ul class="nav-menu">
+        <li class="nav-item active" tabindex="0"><i class="fas fa-home"></i> Home</li>
+        <li class="nav-item" tabindex="0"><i class="fas fa-book"></i> Algorithms</li>
+        <li class="nav-item" tabindex="0"><i class="fas fa-database"></i> Data Structures</li>
+        <li class="nav-item" tabindex="0"><i class="fas fa-code"></i> Programming</li>
+        <li class="nav-item" tabindex="0"><i class="fas fa-network-wired"></i> Networks</li>
+        <li class="nav-item" tabindex="0"><i class="fas fa-microchip"></i> Systems</li>
+      </ul>
+    </nav>
+
+    <article class="main-content">
+      <div class="content-header">
+        <h2>Featured Notes</h2>
+        <div class="search-container" role="search">
+          <i class="fas fa-search search-icon" aria-hidden="true"></i>
+          <input
+            class="search-input"
+            type="search"
+            aria-label="Search notes"
+            placeholder="Search notes..."
+            autocomplete="off"
+          />
         </div>
       </div>
-      
-      <nav class="sidebar-nav">
-        <ul class="nav-menu">
-          <li class="nav-item active">
-            <i class="fas fa-home"></i>
-            <span>Navigation</span>
-          </li>
-          <li class="nav-item">
-            <i class="fas fa-clock"></i>
-            <span>Recent Notes</span>
-          </li>
-          <li class="nav-item">
-            <i class="fas fa-folder"></i>
-            <span>Categories</span>
-          </li>
-          <li class="nav-item">
-            <i class="fas fa-star"></i>
-            <span>Featured Notes</span>
-          </li>
-          <li class="nav-item">
-            <i class="fas fa-envelope"></i>
-            <span>Contact</span>
-          </li>
-          <li class="nav-item">
-            <i class="fas fa-info-circle"></i>
-            <span>About</span>
-          </li>
-        </ul>
-      </nav>
-    </aside>
 
-    <!-- Main Content -->
-    <main class="main-content">
-      <!-- Mobile Recent Notes -->
-      <section class="mobile-recent-notes">
+      <section class="featured-content" aria-label="Featured Content">
+        <div class="featured-article">
+          <h3>Introduction to Algorithms</h3>
+          <p>
+            Dive deep into sorting, searching, and graph algorithms with clear explanations and examples.
+          </p>
+          <p>
+            Explore classic algorithms such as QuickSort, Dijkstra’s shortest path, and dynamic programming.
+          </p>
+        </div>
+
+        <aside class="content-sidebar" aria-label="Quick Links and Recent Updates">
+          <div class="quick-links">
+            <h4>Quick Links</h4>
+            <ul>
+              <li><a href="#">Sorting Algorithms</a></li>
+              <li><a href="#">Graph Theory</a></li>
+              <li><a href="#">Data Structures</a></li>
+              <li><a href="#">System Design</a></li>
+            </ul>
+          </div>
+
+          <div class="recent-updates">
+            <h4>Recent Updates</h4>
+            <div class="update-item">
+              <span class="update-title">Added new graph tutorials</span>
+              <time datetime="2025-10-01">Oct 1, 2025</time>
+            </div>
+            <div class="update-item">
+              <span class="update-title">Updated sorting algorithm notes</span>
+              <time datetime="2025-09-28">Sep 28, 2025</time>
+            </div>
+            <div class="update-item">
+              <span class="update-title">New programming exercises</span>
+              <time datetime="2025-09-25">Sep 25, 2025</time>
+            </div>
+          </div>
+        </aside>
+      </section>
+
+      <section aria-label="Recent Notes" style="margin-top: 2rem;">
         <h2>Recent Notes</h2>
         <div class="recent-notes-grid">
-          <div class="note-card">
-            <h4>Binary Search Trees</h4>
-            <p>Understanding the fundamentals of BST operations and implementations...</p>
-            <span class="note-date">2 days ago</span>
-          </div>
-          <div class="note-card">
+          <article class="note-card" tabindex="0" role="article" aria-label="Note about Dynamic Programming">
             <h4>Dynamic Programming</h4>
-            <p>Mastering optimization techniques and memoization strategies...</p>
-            <span class="note-date">5 days ago</span>
-          </div>
-          <div class="note-card">
-            <h4>Graph Algorithms</h4>
-            <p>Exploring DFS, BFS, and shortest path algorithms with examples...</p>
-            <span class="note-date">1 week ago</span>
-          </div>
-        </div>
-      </section>
-
-      <!-- Desktop Featured Notes -->
-      <section class="featured-notes">
-        <div class="content-header">
-          <h2>Featured Notes</h2>
-          <div class="desktop-search">
-            <div class="search-container">
-              <i class="fas fa-search search-icon"></i>
-              <input type="text" placeholder="Search notes..." class="search-input">
-            </div>
-          </div>
-        </div>
-
-        <div class="featured-content">
-          <article class="featured-article">
-            <h3>Understanding Data Structures and Algorithms</h3>
-            <p>Data structures and algorithms are fundamental concepts in computer science. This comprehensive guide covers the essential data structures like arrays, linked lists, trees, and graphs, along with their corresponding algorithms.</p>
-            
-            <p>Whether you're preparing for coding interviews or wanting to strengthen your programming foundation, this note provides clear explanations with practical examples. The algorithms covered include sorting algorithms like merge sort, quick sort, and heap sort.</p>
-            
-            <p>Each algorithm is presented with detailed pseudocode, complexity analysis, and real-world applications to help you understand when and how to use them effectively in your projects.</p>
+            <p>Understand how to break problems into subproblems to optimize computations.</p>
+            <time class="note-date" datetime="2025-09-15">Sep 15, 2025</time>
+          </article>
+          <article class="note-card" tabindex="0" role="article" aria-label="Note about Network Protocols">
+            <h4>Network Protocols</h4>
+            <p>Learn TCP/IP, UDP, and protocols essential for modern networking.</p>
+            <time class="note-date" datetime="2025-08-20">Aug 20, 2025</time>
+          </article>
+          <a href="./notes/os/operating-system.html" target="_blank" rel="noopener noreferrer">
+          <article class="note-card" tabindex="0" role="article" aria-label="Note about Operating Systems">
+            <h4>Operating Systems</h4>
+            <p>Explore processes, threads, and memory management basics.</p>
+            <time class="note-date" datetime="2025-07-10">Jul 10, 2025</time>
+          </article>
+                    </a>
+          <article class="note-card" tabindex="0" role="article" aria-label="Note about Data Structures">
+            <h4>Data Structures</h4>
+            <p>Review trees, graphs, and hash tables for efficient data storage.</p>
+            <time class="note-date" datetime="2025-06-05">Jun 5, 2025</time>
           </article>
 
-          <aside class="content-sidebar">
-            <div class="quick-links">
-              <h4>Quick Links</h4>
-              <ul>
-                <li><a href="notes/algorithms/algo1.html">Algorithms</a></li>
-                <li><a href="notes/data-structures/ds1.html">Data Structures</a></li>
-                <li><a href="notes/os/ubuntu.html">Operating Systems</a></li>
-                <li><a href="#databases">Databases</a></li>
-                <li><a href="#networks">Computer Networks</a></li>
-              </ul>
-            </div>
-            
-            <div class="recent-updates">
-              <h4>Recent Updates</h4>
-              <div class="update-item">
-                <span class="update-title">Graph Theory Basics</span>
-                <span class="update-date">Oct 1, 2025</span>
-              </div>
-              <div class="update-item">
-                <span class="update-title">Hash Tables Deep Dive</span>
-                <span class="update-date">Sep 28, 2025</span>
-              </div>
-              <div class="update-item">
-                <span class="update-title">Memory Management</span>
-                <span class="update-date">Sep 25, 2025</span>
-              </div>
-            </div>
-          </aside>
         </div>
       </section>
-
-      <!-- Mobile Categories -->
-      <section class="mobile-categories">
-        <div class="categories-grid">
-          <div class="category-item">
-            <i class="fas fa-code"></i>
-            <span>Algorithms</span>
-          </div>
-          <div class="category-item">
-            <i class="fas fa-sitemap"></i>
-            <span>Data Structures</span>
-          </div>
-          <div class="category-item">
-            <i class="fas fa-server"></i>
-            <span>Operating Systems</span>
-          </div>
-          <div class="category-item">
-            <i class="fas fa-database"></i>
-            <span>Databases</span>
-          </div>
-        </div>
-      </section>
-    </main>
+    </article>
   </div>
 
-  <!-- Mobile Menu Overlay -->
-  <div class="mobile-menu-overlay" onclick="closeMobileMenu()"></div>
-  <nav class="mobile-menu">
-    <ul class="mobile-nav-list">
-      <li><a href="#"><i class="fas fa-home"></i> Home</a></li>
-      <li><a href="#"><i class="fas fa-clock"></i> Recent Notes</a></li>
-      <li><a href="#"><i class="fas fa-folder"></i> Categories</a></li>
-      <li><a href="#"><i class="fas fa-star"></i> Featured</a></li>
-      <li><a href="#"><i class="fas fa-envelope"></i> Contact</a></li>
-      <li><a href="#"><i class="fas fa-info-circle"></i> About</a></li>
-    </ul>
-  </nav>
-
-  <!-- Footer -->
-  <footer class="footer">
-    <div class="footer-content">
-      <div class="footer-section">
-        <span>Contact</span>
-      </div>
-      <div class="footer-section">
-        <span>About</span>
-      </div>
-    </div>
-  </footer>
-
   <script>
+    // Dark mode toggle
+    const themeToggle = document.querySelector('.theme-toggle');
+    themeToggle.addEventListener('click', () => {
+      document.body.classList.toggle('dark-mode');
+    });
+
     // Mobile menu toggle
-    function toggleMobileMenu() {
-      const menu = document.querySelector('.mobile-menu');
-      const overlay = document.querySelector('.mobile-menu-overlay');
-      menu.classList.toggle('active');
+    const menuToggle = document.querySelector('.menu-toggle');
+    const mobileMenu = document.createElement('nav');
+    mobileMenu.classList.add('mobile-menu');
+    mobileMenu.setAttribute('aria-label', 'Mobile Navigation Menu');
+    mobileMenu.setAttribute('id', 'mobile-menu');
+
+    // Clone nav menu for mobile
+    const sidebarNav = document.querySelector('.nav-menu').cloneNode(true);
+    mobileMenu.appendChild(document.querySelector('.sidebar-header').cloneNode(true));
+    mobileMenu.appendChild(sidebarNav);
+
+    document.body.appendChild(mobileMenu);
+
+    // Overlay
+    const overlay = document.createElement('div');
+    overlay.classList.add('mobile-menu-overlay');
+    document.body.appendChild(overlay);
+
+    menuToggle.addEventListener('click', () => {
+      const isActive = mobileMenu.classList.toggle('active');
       overlay.classList.toggle('active');
-    }
+      menuToggle.setAttribute('aria-expanded', isActive);
+    });
 
-    function closeMobileMenu() {
-      const menu = document.querySelector('.mobile-menu');
-      const overlay = document.querySelector('.mobile-menu-overlay');
-      menu.classList.remove('active');
+    overlay.addEventListener('click', () => {
+      mobileMenu.classList.remove('active');
       overlay.classList.remove('active');
-    }
+      menuToggle.setAttribute('aria-expanded', 'false');
+    });
 
-    // Dark mode toggle functionality
-    function toggleTheme() {
-      const body = document.body;
-      const isDark = body.classList.contains('dark-mode');
-      
-      if (isDark) {
-        body.classList.remove('dark-mode');
-        localStorage.setItem('theme', 'light');
-      } else {
-        body.classList.add('dark-mode');
-        localStorage.setItem('theme', 'dark');
-      }
-      
-      // Add animation class for smooth transition
-      body.classList.add('theme-transitioning');
-      setTimeout(() => {
-        body.classList.remove('theme-transitioning');
-      }, 300);
-    }
 
-    // Load saved theme on page load
-    document.addEventListener('DOMContentLoaded', function() {
-      const savedTheme = localStorage.getItem('theme');
-      if (savedTheme === 'dark') {
-        document.body.classList.add('dark-mode');
-      }
+    const navItems = document.querySelectorAll('.nav-item');
+    navItems.forEach(item => {
+      item.addEventListener('keydown', e => {
+        if (e.key === 'Enter' || e.key === ' ') {
+          e.preventDefault();
+          navItems.forEach(i => i.classList.remove('active'));
+          item.classList.add('active');
+        }
+      });
     });
   </script>
 </body>
