@@ -8,7 +8,14 @@
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="stylesheet" href="css/style.css">
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600&display=swap" rel="stylesheet" />
-  <script src="https://kit.fontawesome.com/3e2b676f17.js" crossorigin="anonymous" defer></script>
+  <!-- FontAwesome with fallback -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" crossorigin="anonymous" />
+  <script>
+    // Fallback for FontAwesome if CDN fails
+    if (!window.FontAwesome) {
+      console.log('Loading FontAwesome fallback...');
+    }
+  </script>
 
 </head>
 
@@ -19,8 +26,8 @@
     </button>
     <h1>CS Notes</h1>
     <button class="theme-toggle" aria-label="Toggle dark mode">
-      <i class="fas fa-moon moon-icon"></i>
-      <i class="fas fa-sun sun-icon"></i>
+      <i class="fas fa-moon moon-icon">🌙</i>
+      <i class="fas fa-sun sun-icon">☀️</i>
     </button>
   </header>
 
@@ -133,6 +140,8 @@
   </div>
 
   <script>
+    console.log('🚀 Script loading...');
+    
     // Enhanced Dark Mode System with Preference Save and System Sync
     class ThemeManager {
       constructor() {
@@ -361,13 +370,61 @@
     });
 
     // Initialize Theme Manager
-    let themeManager;
+    window.themeManagerInstance = null;
+    
+    // Initialize immediately and on DOM ready (double safety)
+    function initThemeManager() {
+      if (typeof ThemeManager !== 'undefined' && !window.themeManagerInstance) {
+        window.themeManagerInstance = new ThemeManager();
+        console.log('✅ ThemeManager initialized successfully');
+        
+        // Also expose it as a simple property
+        window.tm = window.themeManagerInstance;
+      }
+    }
+    
+    // Try to initialize immediately
+    initThemeManager();
+    
+    // Also try on DOM ready
     document.addEventListener('DOMContentLoaded', () => {
-      themeManager = new ThemeManager();
+      initThemeManager();
+    });
+    
+    // Also try after window loads completely
+    window.addEventListener('load', () => {
+      initThemeManager();
     });
 
     // Expose theme manager globally for console access/debugging
-    window.themeManager = () => themeManager;
+    window.themeManager = function() {
+      if (!window.themeManagerInstance) {
+        console.error('❌ ThemeManager not initialized yet. Trying to initialize...');
+        initThemeManager();
+      }
+      return window.themeManagerInstance;
+    };
+    
+    // Create easy access methods
+    window.getTheme = function() {
+      return window.themeManagerInstance ? window.themeManagerInstance.getCurrentTheme() : 'unknown';
+    };
+    
+    window.setTheme = function(theme) {
+      if (window.themeManagerInstance) {
+        window.themeManagerInstance.applyTheme(theme);
+      } else {
+        console.error('ThemeManager not ready');
+      }
+    };
+    
+    // Simple fallback function for testing
+    window.toggleDarkMode = function() {
+      document.body.classList.toggle('dark-mode');
+      console.log('Theme toggled! Current:', document.body.classList.contains('dark-mode') ? 'dark' : 'light');
+    };
+    
+    console.log('✅ Script loaded successfully');
   </script>
 </body>
 
