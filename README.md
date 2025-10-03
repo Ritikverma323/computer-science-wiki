@@ -120,8 +120,8 @@ Remember: Always target the development branch. Production deployments happen on
 
 Check [CONTRIBUTING.md](CONTRIBUTING.md) to learn how to submit your notes.
 
-### 💻 Technologies Used
-
+### 💻 Technologies Used 
+ 
 ```
 React
  – UI library
