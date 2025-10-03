@@ -1,24 +1,15 @@
-import { posts } from "../data/posts";
-import PostCard from "../components/PostCard";
-import BlogLayout from "../components/BlogLayout";
-import Head from "next/head";
+import { posts } from '../data/posts';
+import PostCard from '../components/PostCard';
+import BlogLayout from '../components/BlogLayout';
+
+export const dynamic = 'force-static';
 
 export default function Home() {
   return (
-    <>
-      <Head>
-        <title>TechBlog - Home</title>
-        <meta
-          name="description"
-          content="Latest tech articles on JavaScript, CSS, React, and more."
-        />
-      </Head>
-
-      <BlogLayout title="Latest Posts">
-        {posts.map((post) => (
-          <PostCard key={post.id} post={post} />
-        ))}
-      </BlogLayout>
-    </>
+    <BlogLayout title='Latest Posts' headingLevel={1}>
+      {posts.map((p) => (
+        <PostCard key={p.id} post={p} />
+      ))}
+    </BlogLayout>
   );
 }

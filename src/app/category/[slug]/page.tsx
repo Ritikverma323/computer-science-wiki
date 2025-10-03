@@ -1,24 +1,35 @@
-import { posts } from "@/data/posts";
-import PostCard from "@/components/PostCard";
-import BlogLayout from "@/components/BlogLayout";
+import { posts } from '@/data/posts';
+import PostCard from '@/components/PostCard';
+import BlogLayout from '@/components/BlogLayout';
+import type { Metadata } from 'next';
+
+export function generateMetadata({
+  params,
+}: {
+  params: { slug: string };
+}): Metadata {
+  const name = params.slug;
+  const siteUrl = 'https://computer-science-blogs.vercel.app';
+  const url = `${siteUrl}/category/${name}`;
+  const desc = `Articles in the ${name} category on TechBlog.`;
+  return {
+    title: `Category: ${name}`,
+    description: desc,
+    keywords: [name, `${name} tutorials`, `${name} articles`],
+    alternates: { canonical: url },
+    openGraph: { title: `Category: ${name}`, description: desc, url },
+    twitter: { title: `Category: ${name}`, description: desc },
+  };
+}
 
 export default function CategoryPage({ params }: { params: { slug: string } }) {
-  const filteredPosts = posts.filter(
-    (post) => post.category.toLowerCase() === params.slug.toLowerCase()
-  );
-
-  if (filteredPosts.length === 0) {
-    return (
-      <BlogLayout title={`Category: ${params.slug}`}>
-        <p>No posts found in category: {params.slug}</p>
-      </BlogLayout>
-    );
-  }
-
+  const slug = params.slug.toLowerCase();
+  const filteredPosts = posts.filter((p) => p.category.toLowerCase() === slug);
   return (
-    <BlogLayout title={`Category: ${params.slug}`}>
-      {filteredPosts.map((post) => (
-        <PostCard key={post.id} post={post} />
+    <BlogLayout title={`Category: ${params.slug}`} headingLevel={1}>
+      {filteredPosts.length === 0 && <p>No posts found.</p>}
+      {filteredPosts.map((p) => (
+        <PostCard key={p.id} post={p} />
       ))}
     </BlogLayout>
   );
