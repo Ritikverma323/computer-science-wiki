@@ -113,20 +113,21 @@ Describe your changes and link to any relevant issue.
 Wait for review and feedback.
 
 ```
+
 ```
 Remember: Always target the development branch. Production deployments happen only after merging to development.
 ```
 
 Check [CONTRIBUTING.md](CONTRIBUTING.md) to learn how to submit your notes.
 
-### 💻 Technologies Used
-
+### 💻 Technologies Used 
+ 
 ```
 React
  – UI library
 Next.js
  – React framework
-Tailwind CSS
+Tailwind CSS 
  – Utility-first CSS framework
 ```
 ### Deployed on Vercel
