@@ -21,6 +21,90 @@
 
       --transition-fast: 0.2s ease-in-out;
       --transition-med: 0.35s ease-in-out;
+      --transition-theme: 0.35s cubic-bezier(0.4, 0, 0.2, 1);
+    }
+
+    /* Enhanced Theme Transition System */
+    body.theme-transitions-enabled,
+    body.theme-transitions-enabled *,
+    body.theme-transitions-enabled *::before,
+    body.theme-transitions-enabled *::after {
+      transition-property: background-color, color, border-color, box-shadow, opacity;
+      transition-duration: var(--transition-theme);
+      transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
+    }
+
+    /* Special handling for theme transitioning state */
+    body.theme-transitioning {
+      overflow-x: hidden;
+    }
+
+    body.theme-transitioning *,
+    body.theme-transitioning *::before,
+    body.theme-transitioning *::after {
+      transition-property: background-color, color, border-color, box-shadow, opacity, transform !important;
+      transition-duration: var(--transition-theme) !important;
+      transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1) !important;
+    }
+
+    /* Theme toggle button enhancements */
+    .theme-toggle {
+      position: relative;
+      background: rgba(255, 255, 255, 0.2);
+      border: 2px solid rgba(255, 255, 255, 0.3);
+      border-radius: 50px;
+      padding: 0.5rem 1rem;
+      cursor: pointer;
+      backdrop-filter: blur(10px);
+      transition: all var(--transition-fast);
+    }
+
+    .theme-toggle:hover {
+      background: rgba(255, 255, 255, 0.3);
+      border-color: rgba(255, 255, 255, 0.4);
+      transform: scale(1.05);
+    }
+
+    .theme-toggle:active {
+      transform: scale(0.95);
+    }
+
+    .theme-toggle .sun-icon,
+    .theme-toggle .moon-icon {
+      transition: all var(--transition-fast);
+      display: inline-block;
+      position: relative;
+    }
+
+    .theme-toggle .sun-icon {
+      color: #fbbf24;
+      filter: drop-shadow(0 0 6px rgba(251, 191, 36, 0.5));
+    }
+
+    .theme-toggle .moon-icon {
+      color: #ddd6fe;
+      filter: drop-shadow(0 0 6px rgba(221, 214, 254, 0.5));
+    }
+
+    /* Enhanced icon animations */
+    body.dark-mode .theme-toggle .sun-icon {
+      transform: rotate(180deg) scale(1.1);
+      opacity: 1;
+    }
+
+    body.dark-mode .theme-toggle .moon-icon {
+      transform: rotate(-180deg) scale(0.8);
+      opacity: 0.6;
+    }
+
+    body:not(.dark-mode) .theme-toggle .sun-icon {
+      transform: rotate(0deg) scale(0.8);
+      opacity: 0.6;
+    }
+
+    body:not(.dark-mode) .theme-toggle .moon-icon {
+      transform: rotate(0deg) scale(1.1);
+      opacity: 1;
     }
 
     /* Reset & basics */
@@ -39,6 +123,12 @@
       -moz-osx-font-smoothing: grayscale;
       transition: background-color var(--transition-med), color var(--transition-med);
     }
+
+    /* Enhanced dark mode styling */
+    body.dark-mode {
+      background-color: var(--color-bg-dark);
+      color: var(--color-text-dark);
+    }
     a {
       color: var(--color-primary);
       text-decoration: none;
@@ -56,10 +146,6 @@
     }
 
     /* Dark mode */
-    body.dark-mode {
-      background-color: var(--color-bg-dark);
-      color: var(--color-text-dark);
-    }
     body.dark-mode a {
       color: var(--color-accent);
     }
