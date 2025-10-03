@@ -3,7 +3,7 @@ import Link from "next/link";
 export default function PostCard({ post }) {
   return (
     <article className="post-card">
-      <img src={post.img} alt={post.title} />
+      <img src={post.image} alt={post.title} />
       <div className="post-info">
         <span className="category">#{post.category}</span>
         <h3>
