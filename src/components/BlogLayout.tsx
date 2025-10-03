@@ -8,7 +8,6 @@ export default function BlogLayout({ title, children }: { title: string; childre
         <h2>{title}</h2>
         {children}
       </section>
-      <Sidebar />
     </>
   );
 }

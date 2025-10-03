@@ -1,8 +1,6 @@
-import { posts } from "../data/posts";
-import PostCard from "../components/PostCard";
-import BlogLayout from "../components/BlogLayout";
 import Head from "next/head";
-
+import SearchBar from "@/components/SearchBar";
+import Sidebar from "@/components/Sidebar";
 export default function Home() {
   return (
     <>
@@ -13,12 +11,8 @@ export default function Home() {
           content="Latest tech articles on JavaScript, CSS, React, and more."
         />
       </Head>
-
-      <BlogLayout title="Latest Posts">
-        {posts.map((post) => (
-          <PostCard key={post.id} post={post} />
-        ))}
-      </BlogLayout>
+      <SearchBar />
+      <Sidebar />
     </>
   );
 }
