@@ -1,11 +1,23 @@
-export const posts = [
+export type Post = {
+  id: string | number;
+  title: string;
+  content:string;
+  category: string;
+  author:string;
+  excerpt: string;
+  date: string;
+  image: string;
+};
+
+export const posts : Post[] = [
   {
     id: 1,
     title: "Mastering the Event Loop in JavaScript",
     category: "JavaScript",
     author: "Jane Doe",
     date: "2025-10-01",
-    img: "/post1.jpg",
+    image: "/post1.jpg",
+    excerpt:"",
     content: `
       <p>The <strong>Event Loop</strong> is a fundamental concept for modern JavaScript development...</p>
       <h3>1. The Call Stack</h3>
@@ -24,7 +36,8 @@ export const posts = [
     category: "CSS",
     author: "John Smith",
     date: "2025-09-28",
-    img: "/post2.jpg",
-    content: `<p>Ditch the floats! CSS Grid offers a powerful two-dimensional layout...</p>`
+    image: "/post2.jpg",
+    content: `<p>Ditch the floats! CSS Grid offers a powerful two-dimensional layout...</p>`,
+    excerpt:"",
   }
 ];

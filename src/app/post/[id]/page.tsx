@@ -25,7 +25,7 @@ export default function BlogDetail({ params }) {
             <span className="author">By {post.author}</span>
             <time dateTime={post.date}>{post.date}</time>
           </div>
-          <img src={post.img} alt={post.title} className="detail-image" />
+          <img src={post.image} alt={post.title} className="detail-image" />
           <div
             className="post-body"
             dangerouslySetInnerHTML={{ __html: post.content }}
