@@ -1,24 +1,17 @@
-import { posts } from "../data/posts";
-import PostCard from "../components/PostCard";
+"use client";
+import { useState } from "react";
 import BlogLayout from "../components/BlogLayout";
-import Head from "next/head";
+import CategoryFilter from "../components/CategoryFilter";
+import { categories } from "../data/categories";
+
 
 export default function Home() {
-  return (
-    <>
-      <Head>
-        <title>TechBlog - Home</title>
-        <meta
-          name="description"
-          content="Latest tech articles on JavaScript, CSS, React, and more."
-        />
-      </Head>
+  const [selectedCategory, setSelectedCategory] = useState("All");
 
-      <BlogLayout title="Latest Posts">
-        {posts.map((post) => (
-          <PostCard key={post.id} post={post} />
-        ))}
-      </BlogLayout>
-    </>
+  return (
+    <BlogLayout 
+      title="Latest Posts" 
+      selectedCategory={selectedCategory} 
+    />
   );
 }

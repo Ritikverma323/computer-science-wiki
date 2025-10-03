@@ -1,5 +1,4 @@
 import { posts } from "./posts";
 
-export const categories = Array.from(
-  new Set(posts.map((post) => post.category.toLowerCase()))
-);
+// Keep category names exactly as in posts.ts
+export const categories = ["All", ...Array.from(new Set(posts.map((post) => post.category)))];
