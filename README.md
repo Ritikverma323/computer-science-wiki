@@ -127,7 +127,7 @@ React
  – UI library
 Next.js
  – React framework
-Tailwind CSS
+Tailwind CSS 
  – Utility-first CSS framework
 ```
 ### Deployed on Vercel
