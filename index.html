@@ -8,7 +8,14 @@
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="stylesheet" href="css/style.css">
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600&display=swap" rel="stylesheet" />
-  <script src="https://kit.fontawesome.com/3e2b676f17.js" crossorigin="anonymous" defer></script>
+  <!-- FontAwesome with fallback -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" crossorigin="anonymous" />
+  <script>
+    // Fallback for FontAwesome if CDN fails
+    if (!window.FontAwesome) {
+      console.log('Loading FontAwesome fallback...');
+    }
+  </script>
 
 </head>
 
@@ -19,8 +26,8 @@
     </button>
     <h1>CS Notes</h1>
     <button class="theme-toggle" aria-label="Toggle dark mode">
-      <i class="fas fa-moon moon-icon"></i>
-      <i class="fas fa-sun sun-icon"></i>
+      <i class="fas fa-moon moon-icon">🌙</i>
+      <i class="fas fa-sun sun-icon">☀️</i>
     </button>
   </header>
 
@@ -133,11 +140,191 @@
   </div>
 
   <script>
-    // Dark mode toggle
-    const themeToggle = document.querySelector('.theme-toggle');
-    themeToggle.addEventListener('click', () => {
-      document.body.classList.toggle('dark-mode');
-    });
+    console.log('🚀 Script loading...');
+    
+    // Enhanced Dark Mode System with Preference Save and System Sync
+    class ThemeManager {
+      constructor() {
+        this.themeToggle = document.querySelector('.theme-toggle');
+        this.preferenceKey = 'cs-notes-theme-preference';
+        this.systemPreferenceQuery = '(prefers-color-scheme: dark)';
+        
+        this.init();
+      }
+
+      init() {
+        // Initialize theme on page load
+        this.initializeTheme();
+        
+        // Set up event listeners
+        this.setupEventListeners();
+        
+        // Listen for system preference changes
+        this.setupSystemPreferenceListener();
+      }
+
+      initializeTheme() {
+        const savedPreference = this.getSavedPreference();
+        const systemPreference = this.getSystemPreference();
+        
+        // Determine which theme to apply
+        let shouldUseDarkMode = false;
+        
+        if (savedPreference !== null) {
+          // User has explicitly set a preference
+          shouldUseDarkMode = (savedPreference === 'dark');
+        } else {
+          // No saved preference, use system preference
+          shouldUseDarkMode = systemPreference;
+        }
+        
+        // Apply theme without animation on initial load
+        document.body.classList.toggle('dark-mode', shouldUseDarkMode);
+        
+        // Update icon state
+        this.updateThemeIcons(shouldUseDarkMode);
+        
+        // Add a small delay before enabling transitions to prevent flash
+        setTimeout(() => {
+          document.body.classList.add('theme-transitions-enabled');
+        }, 100);
+      }
+
+      getSavedPreference() {
+        try {
+          const saved = localStorage.getItem(this.preferenceKey);
+          return saved === 'dark' || saved === 'light' ? saved : null;
+        } catch (error) {
+          console.warn('Could not access localStorage:', error);
+          return null;
+        }
+      }
+
+      getSystemPreference() {
+        try {
+          return window.matchMedia && window.matchMedia(this.systemPreferenceQuery).matches;
+        } catch (error) {
+          console.warn('Could not access system theme preference:', error);
+          return false;
+        }
+      }
+
+      savePreference(theme) {
+        try {
+          localStorage.setItem(this.preferenceKey, theme);
+        } catch (error) {
+          console.warn('Could not save theme preference:', error);
+        }
+      }
+
+      setupEventListeners() {
+        this.themeToggle.addEventListener('click', () => {
+          this.toggleTheme();
+        });
+
+        // Add keyboard support for theme toggle
+        this.themeToggle.addEventListener('keydown', (e) => {
+          if (e.key === 'Enter' || e.key === ' ') {
+            e.preventDefault();
+            this.toggleTheme();
+          }
+        });
+      }
+
+      setupSystemPreferenceListener() {
+        try {
+          const mediaQuery = window.matchMedia(this.systemPreferenceQuery);
+          
+          // Modern browsers
+          if (mediaQuery.addEventListener) {
+            mediaQuery.addEventListener('change', (e) => {
+              this.handleSystemPreferenceChange(e.matches);
+            });
+          } 
+          // Older browsers
+          else if (mediaQuery.addListener) {
+            mediaQuery.addListener((e) => {
+              this.handleSystemPreferenceChange(e.matches);
+            });
+          }
+        } catch (error) {
+          console.warn('Could not set up system preference listener:', error);
+        }
+      }
+
+      handleSystemPreferenceChange(systemPrefersDark) {
+        // Only auto-update if user hasn't explicitly set a preference
+        const savedPreference = this.getSavedPreference();
+        if (savedPreference === null) {
+          const currentlyDark = document.body.classList.contains('dark-mode');
+          if (currentlyDark !== systemPrefersDark) {
+            this.applyTheme(systemPrefersDark ? 'dark' : 'light', false);
+          }
+        }
+      }
+
+      toggleTheme() {
+        const currentlyDark = document.body.classList.contains('dark-mode');
+        const newTheme = currentlyDark ? 'light' : 'dark';
+        this.applyTheme(newTheme, true);
+      }
+
+      applyTheme(theme, savePreference = true) {
+        const isDark = (theme === 'dark');
+        
+        // Add transition class for smooth animation
+        document.body.classList.add('theme-transitioning');
+        
+        // Apply theme
+        document.body.classList.toggle('dark-mode', isDark);
+        
+        // Update icons
+        this.updateThemeIcons(isDark);
+        
+        // Save preference if requested
+        if (savePreference) {
+          this.savePreference(theme);
+        }
+        
+        // Remove transition class after animation
+        setTimeout(() => {
+          document.body.classList.remove('theme-transitioning');
+        }, 350);
+
+        // Dispatch custom event for other components
+        const themeChangeEvent = new CustomEvent('themechange', {
+          detail: { theme, isDark }
+        });
+        document.dispatchEvent(themeChangeEvent);
+      }
+
+      updateThemeIcons(isDark) {
+        const sunIcon = this.themeToggle.querySelector('.sun-icon');
+        const moonIcon = this.themeToggle.querySelector('.moon-icon');
+        
+        if (sunIcon && moonIcon) {
+          sunIcon.style.opacity = isDark ? '1' : '0.6';
+          moonIcon.style.opacity = isDark ? '0.6' : '1';
+        }
+      }
+
+      // Public method to get current theme
+      getCurrentTheme() {
+        return document.body.classList.contains('dark-mode') ? 'dark' : 'light';
+      }
+
+      // Public method to clear saved preference (revert to system)
+      clearPreference() {
+        try {
+          localStorage.removeItem(this.preferenceKey);
+          // Reapply system preference
+          const systemPreference = this.getSystemPreference();
+          this.applyTheme(systemPreference ? 'dark' : 'light', false);
+        } catch (error) {
+          console.warn('Could not clear theme preference:', error);
+        }
+      }
+    }
 
     // Mobile menu toggle
     const menuToggle = document.querySelector('.menu-toggle');
@@ -170,7 +357,7 @@
       menuToggle.setAttribute('aria-expanded', 'false');
     });
 
-
+    // Navigation items keyboard support
     const navItems = document.querySelectorAll('.nav-item');
     navItems.forEach(item => {
       item.addEventListener('keydown', e => {
@@ -181,6 +368,63 @@
         }
       });
     });
+
+    // Initialize Theme Manager
+    window.themeManagerInstance = null;
+    
+    // Initialize immediately and on DOM ready (double safety)
+    function initThemeManager() {
+      if (typeof ThemeManager !== 'undefined' && !window.themeManagerInstance) {
+        window.themeManagerInstance = new ThemeManager();
+        console.log('✅ ThemeManager initialized successfully');
+        
+        // Also expose it as a simple property
+        window.tm = window.themeManagerInstance;
+      }
+    }
+    
+    // Try to initialize immediately
+    initThemeManager();
+    
+    // Also try on DOM ready
+    document.addEventListener('DOMContentLoaded', () => {
+      initThemeManager();
+    });
+    
+    // Also try after window loads completely
+    window.addEventListener('load', () => {
+      initThemeManager();
+    });
+
+    // Expose theme manager globally for console access/debugging
+    window.themeManager = function() {
+      if (!window.themeManagerInstance) {
+        console.error('❌ ThemeManager not initialized yet. Trying to initialize...');
+        initThemeManager();
+      }
+      return window.themeManagerInstance;
+    };
+    
+    // Create easy access methods
+    window.getTheme = function() {
+      return window.themeManagerInstance ? window.themeManagerInstance.getCurrentTheme() : 'unknown';
+    };
+    
+    window.setTheme = function(theme) {
+      if (window.themeManagerInstance) {
+        window.themeManagerInstance.applyTheme(theme);
+      } else {
+        console.error('ThemeManager not ready');
+      }
+    };
+    
+    // Simple fallback function for testing
+    window.toggleDarkMode = function() {
+      document.body.classList.toggle('dark-mode');
+      console.log('Theme toggled! Current:', document.body.classList.contains('dark-mode') ? 'dark' : 'light');
+    };
+    
+    console.log('✅ Script loaded successfully');
   </script>
 </body>
 
