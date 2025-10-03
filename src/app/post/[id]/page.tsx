@@ -1,10 +1,19 @@
 import { posts } from "../../../data/posts";
 import Sidebar from "../../../components/Sidebar";
 import Head from "next/head";
+import Image from "next/image";
 
-export default function BlogDetail({ params }) {
-  const { id } = params;
-  const post = posts.find((p) => p.id.toString() === id);
+type BlogDetailProps = {
+  params: {
+    id: string;
+  };
+};
+
+
+export default async function BlogDetail({ params }: BlogDetailProps) {
+  const postId = params.id;
+
+  const post = posts.find((p) => p.id.toString() === postId);
 
   if (!post) return <p>Post not found</p>;
 
@@ -25,7 +34,15 @@ export default function BlogDetail({ params }) {
             <span className="author">By {post.author}</span>
             <time dateTime={post.date}>{post.date}</time>
           </div>
-          <img src={post.image} alt={post.title} className="detail-image" />
+
+          <Image
+            src={post.image}
+            alt={post.title}
+            width={800}
+            height={450}
+            className="detail-image"
+          />
+
           <div
             className="post-body"
             dangerouslySetInnerHTML={{ __html: post.content }}
