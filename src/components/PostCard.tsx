@@ -1,15 +1,28 @@
 import Link from "next/link";
 import Image from "next/image";
 
-export default function PostCard({ post }) {
+type Post = {
+  id: string | number;
+  title: string;
+  content: string;
+  category: string;
+  date: string;
+  image: string;
+};
+
+type PostCardProps = {
+  post: Post;
+};
+
+export default function PostCard({ post }: PostCardProps) {
   return (
     <article className="post-card">
       <Link href={`/post/${post.id}`}>
         <Image
           src={post.image}
           alt={post.title}
-          width={400}   // adjust width as needed
-          height={250}  // adjust height as needed
+          width={400}  
+          height={250}  
           className="post-image"
         />
       </Link>
