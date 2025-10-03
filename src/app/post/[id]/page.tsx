@@ -1,6 +1,7 @@
 import { posts } from "../../../data/posts";
 import Sidebar from "../../../components/Sidebar";
 import Head from "next/head";
+import Image from "next/image";
 
 export default function BlogDetail({ params }) {
   const { id } = params;
@@ -25,7 +26,14 @@ export default function BlogDetail({ params }) {
             <span className="author">By {post.author}</span>
             <time dateTime={post.date}>{post.date}</time>
           </div>
-          <img src={post.image} alt={post.title} className="detail-image" />
+          <Image
+            src={post.image}
+            alt={post.title}
+            width={800}  
+            height={450} 
+            className="detail-image"
+          />
+
           <div
             className="post-body"
             dangerouslySetInnerHTML={{ __html: post.content }}
