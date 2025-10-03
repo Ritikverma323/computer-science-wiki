@@ -1,10 +1,11 @@
 "use client";
 
+import { Post } from "@/data/posts";
 import { useState } from "react"; 
 
 interface SearchBarProps {
-  posts: { id: number; title: string; content: string; category: string }[];
-  onSearch: (results: any[]) => void;
+  posts: { id: string| number; title: string; content: string; category: string, author: string, excerpt: string, date : string, image : string}[];
+  onSearch: (results: Post[]) => void;
 }
 
 export default function SearchBar({ posts, onSearch }: SearchBarProps) { 
