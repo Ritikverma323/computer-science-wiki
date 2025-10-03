@@ -1,0 +1,309 @@
+/* ----------------------------------------------------------------
+   1. CSS Variables for Dark/Light Mode and Sizing (rem)
+   ---------------------------------------------------------------- */
+:root {
+    /* Color Variables - Light Mode Defaults */
+    --clr-primary: #007bff;        /* Blue */
+    --clr-text: #333;
+    --clr-background: #fff;
+    --clr-card-bg: #f8f9fa;
+    --clr-border: #ddd;
+    --clr-link-hover: #0056b3;
+    
+    /* Spacing and Font Variables */
+    --font-base-size: 16px;       /* 1rem = 16px */
+    --space-small: 0.5rem;        /* 8px */
+    --space-medium: 1rem;         /* 16px */
+    --space-large: 1.5rem;        /* 24px */
+    --max-width: 1200px;
+}
+
+/* Dark Mode Overrides */
+.dark-mode {
+    --clr-primary: #4da6ff;
+    --clr-text: #e9ecef;
+    --clr-background: #121212;
+    --clr-card-bg: #1e1e1e;
+    --clr-border: #333;
+    --clr-link-hover: #7abaff;
+}
+
+/* ----------------------------------------------------------------
+   2. Global Reset and Base Styles
+   ---------------------------------------------------------------- */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: Arial, sans-serif;
+    line-height: 1.6;
+    background-color: var(--clr-background);
+    color: var(--clr-text);
+    transition: background-color 0.3s, color 0.3s;
+    font-size: 100%; /* Ensures 1rem = 16px */
+}
+
+a {
+    color: var(--clr-primary);
+    text-decoration: none;
+    transition: color 0.3s;
+}
+
+a:hover {
+    color: var(--clr-link-hover);
+}
+
+.container {
+    width: 90%;
+    max-width: var(--max-width);
+    margin: 0 auto;
+    padding: var(--space-medium);
+}
+
+/* ----------------------------------------------------------------
+   3. Header and Footer (Same for all pages)
+   ---------------------------------------------------------------- */
+.main-header {
+    background-color: var(--clr-card-bg);
+    border-bottom: 1px solid var(--clr-border);
+    padding: var(--space-small) 0;
+}
+
+.main-header .container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding-top: var(--space-small);
+    padding-bottom: var(--space-small);
+}
+
+.logo a {
+    font-size: 1.8rem;
+    font-weight: bold;
+    color: var(--clr-primary);
+}
+
+.nav-links {
+    list-style: none;
+    display: flex;
+    gap: 1.5rem;
+}
+
+.nav-links a {
+    color: var(--clr-text);
+    font-size: 1rem;
+}
+
+.mode-button {
+    background: none;
+    border: 1px solid var(--clr-border);
+    cursor: pointer;
+    padding: 0.5rem;
+    border-radius: 0.3rem;
+    font-size: 1.2rem;
+    transition: background-color 0.3s;
+}
+
+.main-footer {
+    background-color: var(--clr-card-bg);
+    border-top: 1px solid var(--clr-border);
+    padding: var(--space-large) 0;
+    text-align: center;
+    margin-top: var(--space-large);
+}
+
+.main-footer .container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.footer-links a {
+    margin-left: var(--space-medium);
+}
+
+
+/* ----------------------------------------------------------------
+   4. Main Content Layout (Responsive)
+   ---------------------------------------------------------------- */
+.main-content {
+    display: grid;
+    grid-template-columns: 1fr; /* Default: Single column */
+    gap: 2rem;
+    padding-top: 2rem;
+}
+
+/* Desktop Layout: Two columns (Blog Posts + Sidebar) */
+@media (min-width: 768px) {
+    .main-content {
+        grid-template-columns: 3fr 1fr; /* 75% for posts, 25% for sidebar */
+    }
+
+    .blog-posts, .blog-detail {
+        grid-column: 1 / 2;
+    }
+
+    .sidebar {
+        grid-column: 2 / 3;
+    }
+}
+
+/* ----------------------------------------------------------------
+   5. Blog List Page Styles (index.html)
+   ---------------------------------------------------------------- */
+.blog-posts h2 {
+    font-size: 2rem;
+    margin-bottom: var(--space-large);
+    color: var(--clr-primary);
+}
+
+.post-card {
+    display: flex;
+    gap: 1.5rem;
+    margin-bottom: 2rem;
+    padding: var(--space-medium);
+    border: 1px solid var(--clr-border);
+    border-radius: 0.5rem;
+    background-color: var(--clr-card-bg);
+    transition: transform 0.2s, box-shadow 0.2s;
+}
+
+.post-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+}
+
+.post-card img {
+    width: 30%;
+    min-width: 150px;
+    height: auto;
+    object-fit: cover;
+    border-radius: 0.3rem;
+}
+
+.post-info h3 {
+    margin: 0.5rem 0;
+    font-size: 1.5rem;
+}
+
+.post-info time {
+    display: block;
+    font-size: 0.8rem;
+    color: #6c757d;
+    margin-top: var(--space-small);
+}
+
+.category {
+    display: inline-block;
+    background-color: var(--clr-primary);
+    color: white;
+    padding: 0.2rem 0.6rem;
+    border-radius: 0.3rem;
+    font-size: 0.75rem;
+    font-weight: bold;
+    text-transform: uppercase;
+}
+
+/* Mobile adjustments for post cards */
+@media (max-width: 600px) {
+    .post-card {
+        flex-direction: column;
+    }
+    .post-card img {
+        width: 100%;
+        max-height: 200px;
+    }
+}
+
+/* ----------------------------------------------------------------
+   6. Sidebar Styles (Categories, Trending/Related Posts)
+   ---------------------------------------------------------------- */
+.sidebar-section {
+    padding: var(--space-medium);
+    margin-bottom: 1.5rem;
+    border: 1px solid var(--clr-border);
+    border-radius: 0.5rem;
+    background-color: var(--clr-card-bg);
+}
+
+.sidebar-section h3 {
+    font-size: 1.25rem;
+    margin-bottom: var(--space-medium);
+    border-bottom: 2px solid var(--clr-primary);
+    padding-bottom: var(--space-small);
+}
+
+.sidebar-section ul {
+    list-style: none;
+}
+
+.sidebar-section li {
+    margin-bottom: var(--space-small);
+}
+
+.sidebar-section a {
+    color: var(--clr-text);
+    display: block;
+    padding: 0.2rem 0;
+}
+
+.sidebar-section a:hover {
+    color: var(--clr-primary);
+}
+
+
+/* ----------------------------------------------------------------
+   7. Blog Detail Page Styles (blog-detail.html)
+   ---------------------------------------------------------------- */
+.blog-detail {
+    padding: var(--space-medium);
+}
+
+.detail-category {
+    font-size: 0.8rem;
+}
+
+.post-title {
+    font-size: 2.5rem;
+    margin: 0.5rem 0 1rem;
+}
+
+.post-meta {
+    font-size: 0.9rem;
+    color: #6c757d;
+    margin-bottom: var(--space-large);
+}
+
+.detail-image {
+    width: 100%;
+    max-height: 400px;
+    object-fit: cover;
+    margin-bottom: 2rem;
+    border-radius: 0.5rem;
+}
+
+.post-body h3 {
+    font-size: 1.75rem;
+    margin-top: 1.5rem;
+    margin-bottom: 0.5rem;
+    border-left: 4px solid var(--clr-primary);
+    padding-left: var(--space-medium);
+}
+
+.post-body p {
+    margin-bottom: 1rem;
+    font-size: 1.1rem;
+}
+
+/* Responsive adjustments for headers and text */
+@media (max-width: 600px) {
+    .post-title {
+        font-size: 1.8rem;
+    }
+    .post-body h3 {
+        font-size: 1.4rem;
+    }
+}
