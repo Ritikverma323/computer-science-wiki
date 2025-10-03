@@ -1,42 +1,30 @@
-"use client";
-import { ReactNode, useState } from "react";
-import Sidebar from "./Sidebar";
-import CategoryFilter from "./CategoryFilter";
-import { posts } from "../data/posts";
-import { categories } from "../data/categories";
 import PostCard from "./PostCard";
+import Sidebar from "./Sidebar";
+import { Post } from "../data/posts";
 
-export default function BlogLayout({ title, children }: { title: string; children?: ReactNode }) {
-  const [selectedCategory, setSelectedCategory] = useState("all");
-
-  // filter posts
-  const filteredPosts =
-    selectedCategory === "all"
-      ? posts
-      : posts.filter((p) => p.category.toLowerCase() === selectedCategory.toLowerCase());
-
+export default function BlogLayout({
+  title,
+  posts,
+}: {
+  title: string;
+  posts: Post[];
+}) {
   return (
-    <>
-      <section className="blog-posts">
+    <div className="flex flex-row gap-6 items-start">
+      {/* Left side - Latest Posts */}
+      <section className="flex-1 min-w-0">
         <h2 className="text-2xl font-bold mb-4">{title}</h2>
-
-        {/* Category Filter */}
-        <CategoryFilter
-          categories={categories}
-          selected={selectedCategory}
-          onSelect={setSelectedCategory}
-        />
-
-        {/* Render Posts */}
         <div className="grid gap-4">
-          {filteredPosts.map((post) => (
+          {posts.map((post) => (
             <PostCard key={post.id} post={post} />
           ))}
         </div>
-
-        {children}
       </section>
-      <Sidebar />
-    </>
+
+      {/* Right side - Sidebar */}
+      <aside className="w-72 shrink-0">
+        <Sidebar />
+      </aside>
+    </div>
   );
 }

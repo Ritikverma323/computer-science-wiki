@@ -1,17 +1,24 @@
 "use client";
 import { useState } from "react";
 import BlogLayout from "../components/BlogLayout";
-import CategoryFilter from "../components/CategoryFilter";
-import { categories } from "../data/categories";
-
+import FilterBar from "../components/FilterBar";
+import { posts } from "../data/posts";
 
 export default function Home() {
-  const [selectedCategory, setSelectedCategory] = useState("All");
+  const [activeCategory, setActiveCategory] = useState("All");
+
+  const filteredPosts =
+    activeCategory === "All"
+      ? posts
+      : posts.filter((post) => post.category === activeCategory);
 
   return (
-    <BlogLayout 
-      title="Latest Posts" 
-      selectedCategory={selectedCategory} 
-    />
+    <div>
+      <FilterBar
+        activeCategory={activeCategory}
+        onCategoryChange={setActiveCategory}
+      />
+      <BlogLayout title="Latest Posts" posts={filteredPosts} />
+    </div>
   );
 }
