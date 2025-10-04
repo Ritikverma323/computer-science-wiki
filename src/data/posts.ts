@@ -1,15 +1,25 @@
+export type comments = {
+  profilePic: string;
+  username: string | number;
+  content: string;
+  date: Date;
+  likes: number;
+  replies?: comments[];
+};
+
 export type Post = {
   id: string | number;
   title: string;
-  content:string;
+  content: string;
   category: string;
-  author:string;
+  author: string;
   excerpt: string;
   date: string;
   image: string;
+  comments?: comments[];
 };
 
-export const posts : Post[] = [
+export const posts: Post[] = [
   {
     id: 1,
     title: "Mastering the Event Loop in JavaScript",
@@ -17,7 +27,7 @@ export const posts : Post[] = [
     author: "Jane Doe",
     date: "2025-10-01",
     image: "/post1.jpg",
-    excerpt:"",
+    excerpt: "",
     content: `
       <p>The <strong>Event Loop</strong> is a fundamental concept for modern JavaScript development...</p>
       <h3>1. The Call Stack</h3>
@@ -28,7 +38,39 @@ export const posts : Post[] = [
       <p>Promises and MutationObserver tasks live here...</p>
       <h4>Conclusion</h4>
       <p>A deep understanding of the Event Loop prevents common issues...</p>
-    `
+    `,
+    comments: [
+      {
+        profilePic: "/avatars/user1.jpg",
+        username: "dev_raj",
+        content: "This finally made me understand why setTimeout runs after promises. Great explanation!",
+        date: new Date("2025-10-02T10:30:00"),
+        likes: 23,
+        replies: [
+          {
+            profilePic: "/avatars/user2.jpg",
+            username: "Jane Doe",
+            content: "Glad it helped! The microtask queue is often overlooked, but it’s super important.",
+            date: new Date("2025-10-02T11:00:00"),
+            likes: 12,
+          },
+          {
+            profilePic: "/avatars/user3.jpg",
+            username: "codewithsam",
+            content: "Totally agree! The difference between macro and micro tasks blew my mind.",
+            date: new Date("2025-10-02T12:45:00"),
+            likes: 5,
+          },
+        ],
+      },
+      {
+        profilePic: "/avatars/user4.jpg",
+        username: "js_guru",
+        content: "Would love to see a visual diagram for this topic next time!",
+        date: new Date("2025-10-03T09:10:00"),
+        likes: 8,
+      },
+    ]
   },
   {
     id: 2,
@@ -38,6 +80,22 @@ export const posts : Post[] = [
     date: "2025-09-28",
     image: "/post2.jpg",
     content: `<p>Ditch the floats! CSS Grid offers a powerful two-dimensional layout...</p>`,
-    excerpt:"",
+    excerpt: "",
+    comments: [
+      {
+        profilePic: "/avatars/user2.jpg",
+        username: "designqueen",
+        content: "Grid changed my life as a frontend dev! So much cleaner than flexbox for complex layouts.",
+        date: new Date("2025-09-29T14:20:00"),
+        likes: 15,
+      },
+      {
+        profilePic: "/avatars/user3.jpg",
+        username: "ui_maniac",
+        content: "I use grid for all dashboard layouts now. Just wish browser support was perfect years ago!",
+        date: new Date("2025-09-30T09:00:00"),
+        likes: 9,
+      },
+    ],
   }
 ];
