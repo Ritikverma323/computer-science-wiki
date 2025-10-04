@@ -3,6 +3,7 @@ import { updateVisitorData, getTodayVisitorCount, getTotalVisitorCount } from '.
 
 export async function POST(request: NextRequest) {
     try {
+        console.log('request', request?.headers.get('cookie'));
         const visitorData = updateVisitorData();
 
         return NextResponse.json({

@@ -17,7 +17,7 @@ export default function VisitorsPage() {
                 <div className="visitor-info">
                     <h4>How it works:</h4>
                     <ul>
-                        <li>Click "Track Visit" to increment the visitor count</li>
+                        <li>Click Track Visit to increment the visitor count</li>
                         <li>Daily counts reset each day at midnight</li>
                         <li>Total count accumulates all visits since the start</li>
                         <li>Data is stored locally in the application</li>
