@@ -1,23 +1,44 @@
-import "../styles/globals.css";
-import Header from "../components/Header";
-import Footer from "../components/Footer";
-import { ReactNode } from "react";
+import '../styles/globals.css';
+import Header from '../components/Header';
+import Footer from '../components/Footer';
+import { ReactNode } from 'react';
+import type { Metadata } from 'next';
 
-export const metadata = {
-  title: "TechBlog",
-  description: "Latest tech articles on JavaScript, CSS, React, and more.",
+const siteName = 'TechBlog';
+const siteUrl = 'https://computer-science-blogs.vercel.app';
+const description = 'Latest tech articles on JavaScript, CSS, React, and more.';
+
+export const metadata: Metadata = {
+  title: { default: siteName, template: `%s | ${siteName}` },
+  description,
+  keywords: [
+    'tech',
+    'javascript',
+    'css',
+    'react',
+    'web development',
+    'programming',
+  ],
+  openGraph: {
+    title: siteName,
+    description,
+    url: siteUrl,
+    siteName,
+    type: 'website',
+    locale: 'en_US',
+  },
+  twitter: { card: 'summary_large_image', title: siteName, description },
+  metadataBase: new URL(siteUrl),
 };
 
-type RootLayoutProps = {
-  children: ReactNode;
-};
-
-export default function RootLayout({ children }: RootLayoutProps) {
+export default function RootLayout({ children }: { children: ReactNode }) {
   return (
-    <html lang="en">
+    <html lang='en'>
       <body>
         <Header />
-        <main className="container main-content">{children}</main>
+        <main id='main' className='container main-content'>
+          {children}
+        </main>
         <Footer />
       </body>
     </html>

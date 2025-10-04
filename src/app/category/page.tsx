@@ -1,21 +1,17 @@
-import CategoryList from "@/components/CategoryList";
-import BlogLayout from "@/components/BlogLayout";
-import Head from "next/head";
+import CategoryList from '@/components/CategoryList';
+import BlogLayout from '@/components/BlogLayout';
+import type { Metadata } from 'next';
+
+export const metadata: Metadata = {
+  title: 'All Categories',
+  description: 'Browse all categories of TechBlog posts.',
+  keywords: ['categories', 'techblog'],
+};
 
 export default function CategoriesPage() {
   return (
-    <>
-      <Head>
-        <title>All Categories - TechBlog</title>
-        <meta
-          name="description"
-          content="Browse all categories of TechBlog posts."
-        />
-      </Head>
-
-      <BlogLayout title="All Categories">
-        <CategoryList />
-      </BlogLayout>
-    </>
+    <BlogLayout title='All Categories' headingLevel={1}>
+      <CategoryList />
+    </BlogLayout>
   );
 }
