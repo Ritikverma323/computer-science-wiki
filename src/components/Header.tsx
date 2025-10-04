@@ -18,6 +18,7 @@ export default function Header() {
           <li>
             <Link href='/'>Contact</Link>
           </li>
+         <li><Link href="/visitors">Visitors Count</Link></li>
         </ul>
         <DarkModeToggle />
       </div>

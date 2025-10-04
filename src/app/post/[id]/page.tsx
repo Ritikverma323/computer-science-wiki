@@ -2,6 +2,7 @@ import { posts } from '../../../data/posts';
 import Sidebar from '../../../components/Sidebar';
 import Image from 'next/image';
 import type { Metadata } from 'next';
+import Comments from '@/components/Comments';
 
 type BlogDetailProps = {
   params: {
