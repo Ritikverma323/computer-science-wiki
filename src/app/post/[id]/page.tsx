@@ -1,31 +1,38 @@
 import { posts } from "../../../data/posts";
 import Sidebar from "../../../components/Sidebar";
-import Head from "next/head";
 import Image from "next/image";
 import Comments from "../../../components/Comments";
+import ReadingProgressBar from "../../../components/ReadingProgressBar";
+
 type BlogDetailProps = {
   params: {
     id: string;
   };
 };
 
+// Optional but recommended: Add metadata for SEO
+export async function generateMetadata({ params }: BlogDetailProps) {
+  const { id } = params; // 1. Destructure id from params
+  const post = posts.find((p) => p.id.toString() === id); // 2. Use the new id variable
+
+  if (!post) return { title: "Post not found" };
+
+  return {
+    title: `${post.title} - TechBlog`,
+    description: post.content.replace(/<[^>]+>/g, "").slice(0, 150),
+  };
+}
 
 export default async function BlogDetail({ params }: BlogDetailProps) {
-  const postId = params.id;
-
-  const post = posts.find((p) => p.id.toString() === postId);
+  const { id } = params; // 3. Destructure id from params here as well
+  const post = posts.find((p) => p.id.toString() === id); // 4. Use the new id variable
 
   if (!post) return <p>Post not found</p>;
 
   return (
     <>
-      <Head>
-        <title>{post.title} - TechBlog</title>
-        <meta
-          name="description"
-          content={post.content.replace(/<[^>]+>/g, "").slice(0, 150)}
-        />
-      </Head>
+      <ReadingProgressBar />
+
       <section className="blog-detail">
         <article>
           <span className="category detail-category">#{post.category}</span>
