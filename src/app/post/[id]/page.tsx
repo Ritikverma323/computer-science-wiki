@@ -2,7 +2,7 @@ import { posts } from "../../../data/posts";
 import Sidebar from "../../../components/Sidebar";
 import Head from "next/head";
 import Image from "next/image";
-
+import Comments from "../../../components/Comments";
 type BlogDetailProps = {
   params: {
     id: string;
@@ -48,6 +48,7 @@ export default async function BlogDetail({ params }: BlogDetailProps) {
             dangerouslySetInnerHTML={{ __html: post.content }}
           />
         </article>
+        <Comments comments={post.comments} />
       </section>
       <Sidebar />
     </>

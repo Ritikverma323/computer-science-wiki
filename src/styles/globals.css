@@ -345,6 +345,62 @@ a:hover {
 }
 
 
+/* comment section*/
+.comment-section {
+    margin-top: 3rem;
+}
+.comment-list {
+    margin-top: 1rem;
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+}
+
+
+.comment-item {
+    display: flex;
+    align-items: flex-start;
+    gap: 0.8rem;
+    padding-bottom: 1rem;
+}
+
+.comment-avatar {
+    width: 45px;
+    height: 45px;
+    border-radius: 50%;
+    object-fit: cover;
+}
+
+.comment-content {
+    flex: 1;
+}
+
+.comment-content strong {
+    display: block;
+    margin-bottom: 0.3rem;
+}
+
+.comment-content p {
+    margin: 0.2rem 0;
+}
+
+.comment-meta {
+    font-size: 0.8rem;
+    display: flex;
+    gap: 0.8rem;
+    margin-top: 0.3rem;
+}
+
+.comment-replies {
+    margin-left: 2.5rem;
+    margin-top: 0.6rem;
+    padding-left: 1rem;
+}
+
+.no-comments {
+    font-size: 0.9rem;
+    margin-top: 0.5rem;
+}
 
 
 
