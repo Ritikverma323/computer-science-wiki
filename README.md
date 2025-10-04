@@ -158,9 +158,6 @@ Thanks to everyone who has contributed to this project!
 
 ![Contributors](https://contrib.rocks/image?repo=Ritikverma323/computer-science-blogs)
 
-## Badges
-
- [shields.io](https://shields.io/)
 
 ### License
 
