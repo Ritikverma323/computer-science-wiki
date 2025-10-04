@@ -145,6 +145,8 @@ Wait for review and feedback.
 Remember: Always target the development branch. Production deployments happen only after merging to development.
 ```
 
+If you found this repository helpful, consider giving it a star ⭐
+
 Check [CONTRIBUTING.md](CONTRIBUTING.md) to learn how to submit your notes.
 
 
