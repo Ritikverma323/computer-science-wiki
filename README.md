@@ -158,9 +158,54 @@ Thanks to everyone who has contributed to this project!
 
 ![Contributors](https://contrib.rocks/image?repo=Ritikverma323/computer-science-blogs)
 
+## 🚀 What's Next?
+
+### 🛣️ Roadmap
+
+#### Core Features
+- [ ] Add Backend APIs
+- [ ] Add Authentication (JWT / OAuth)
+- [ ] User Profiles & Dashboards
+- [ ] Role-based Access (Admin, Contributor, Viewer)
+
+#### Content Management
+- [ ] Add Markdown/HTML Post Editor
+- [ ] Allow image uploads for posts
+- [ ] Tagging & Category System
+- [ ] Commenting System
+
+#### UI/UX Enhancements
+- [ ] Dark Mode
+- [ ] Responsive Design Improvements
+- [ ] Search & Filter Posts
+- [ ] Featured Posts / Trending Section
+
+#### Performance & Security
+- [ ] Rate Limiting & Spam Prevention
+- [ ] Input Validation & Sanitization
+- [ ] Optimize API & DB Performance
+
+#### Community & Collaboration
+- [ ] Notifications for new posts/comments
+- [ ] Voting / Like System
+- [ ] Contributor Leaderboard
+- [ ] Discussion Forum / Q&A Section
+
+*Have an idea? [Let us know!](https://github.com/Ritikverma323/computer-science-blogs/discussions)*
+
 
 ### License
 
 [![MIT License](https://img.shields.io/badge/License-MIT-green.svg)](https://choosealicense.com/licenses/mit/)
 
+
+### 🎯 Ready to Contribute?
+
+[![Contribute Now](https://img.shields.io/badge/🚀_Contribute_Now-Start_Building-green.svg?style=for-the-badge)](CONTRIBUTING.md)
+
+**Join hundreds of developers building the future of web development tools!**
+
+---
+
+**Made with ❤️ for the developer community • Happy Hacktoberfest 2025!**
 
