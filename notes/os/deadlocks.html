@@ -1,0 +1,333 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Blog Detail - Deadlocks in OS | CS Notes</title>
+  <link
+    href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600&display=swap"
+    rel="stylesheet"
+  />
+  <script src="https://kit.fontawesome.com/a076d05399.js" crossorigin="anonymous"></script>
+  <style>
+    /* Keep same CSS as in your reference */
+    :root {
+      --color-bg-light: #ffffff;
+      --color-text-light: #333333;
+      --color-primary: #007acc;
+      --color-accent: #0099ff;
+      --color-bg-dark: #1e1e2f;
+      --color-text-dark: #cbd5e1;
+      --color-primary-dark: #4ea8ff;
+      --color-accent-dark: #3b82f6;
+      --spacing-sm: 8px;
+      --spacing-md: 16px;
+      --spacing-lg: 24px;
+      --font-family: 'Inter', sans-serif;
+      --transition-fast: 0.25s ease;
+      --shadow-light: 0 4px 12px rgba(0,0,0,0.1);
+      --shadow-dark: 0 4px 12px rgba(0,0,0,0.6);
+      --border-radius: 10px;
+    }
+
+    body {
+      margin: 0;
+      font-family: var(--font-family);
+      background: var(--color-bg-light);
+      color: var(--color-text-light);
+      transition: background-color var(--transition-fast), color var(--transition-fast);
+      line-height: 1.6;
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+    }
+
+    body.dark-mode {
+      background: var(--color-bg-dark);
+      color: var(--color-text-dark);
+    }
+
+    a {
+      color: var(--color-primary);
+      text-decoration: none;
+      transition: color var(--transition-fast);
+    }
+
+    body.dark-mode a {
+      color: var(--color-primary-dark);
+    }
+
+    a:hover,
+    a:focus {
+      text-decoration: underline;
+    }
+
+    header,
+    footer {
+      background-color: var(--color-primary);
+      color: white;
+      padding: var(--spacing-md);
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+
+    body.dark-mode header,
+    body.dark-mode footer {
+      background-color: var(--color-primary-dark);
+    }
+
+    header h1,
+    footer p {
+      margin: 0;
+      font-weight: 600;
+      font-size: 1.5rem;
+    }
+
+    .theme-toggle {
+      background: transparent;
+      border: none;
+      color: white;
+      cursor: pointer;
+      font-size: 1.5rem;
+      display: flex;
+      align-items: center;
+      gap: 0.25rem;
+      transition: color var(--transition-fast);
+    }
+
+    .theme-toggle:focus {
+      outline: 2px solid white;
+      outline-offset: 2px;
+    }
+
+    main {
+      flex-grow: 1;
+      max-width: 1100px;
+      margin: var(--spacing-lg) auto;
+      padding: 0 var(--spacing-md);
+      display: flex;
+      gap: var(--spacing-lg);
+    }
+
+    aside.related-articles {
+      flex: 0 0 280px;
+      background: var(--color-bg-light);
+      padding: var(--spacing-md);
+      border-radius: var(--border-radius);
+      box-shadow: var(--shadow-light);
+      transition: background-color var(--transition-fast), box-shadow var(--transition-fast);
+      height: fit-content;
+    }
+
+    body.dark-mode aside.related-articles {
+      background: #2c2c44;
+      box-shadow: var(--shadow-dark);
+    }
+
+    aside.related-articles h2 {
+      font-size: 1.25rem;
+      margin-bottom: var(--spacing-md);
+      color: var(--color-accent);
+      transition: color var(--transition-fast);
+    }
+
+    body.dark-mode aside.related-articles h2 {
+      color: var(--color-accent-dark);
+    }
+
+    aside.related-articles ul {
+      list-style: none;
+      padding: 0;
+      margin: 0;
+    }
+
+    aside.related-articles ul li + li {
+      margin-top: var(--spacing-sm);
+    }
+
+    aside.related-articles a {
+      color: var(--color-primary);
+      font-weight: 500;
+    }
+
+    body.dark-mode aside.related-articles a {
+      color: var(--color-primary-dark);
+    }
+
+    article.blog-post {
+      flex: 1;
+      background: var(--color-bg-light);
+      padding: var(--spacing-lg);
+      border-radius: var(--border-radius);
+      box-shadow: var(--shadow-light);
+      transition: background-color var(--transition-fast), box-shadow var(--transition-fast);
+    }
+
+    body.dark-mode article.blog-post {
+      background: #2c2c44;
+      box-shadow: var(--shadow-dark);
+    }
+
+    article.blog-post h1 {
+      font-size: 2.25rem;
+      margin-bottom: var(--spacing-md);
+      color: var(--color-primary);
+      transition: color var(--transition-fast);
+    }
+
+    body.dark-mode article.blog-post h1 {
+      color: var(--color-primary-dark);
+    }
+
+    article.blog-post time {
+      display: block;
+      font-size: 0.9rem;
+      color: #666;
+      margin-bottom: var(--spacing-lg);
+      user-select: none;
+    }
+
+    body.dark-mode article.blog-post time {
+      color: #999;
+    }
+
+    article.blog-post h2 {
+      color: var(--color-accent);
+      margin-top: var(--spacing-lg);
+      margin-bottom: var(--spacing-md);
+      transition: color var(--transition-fast);
+    }
+
+    body.dark-mode article.blog-post h2 {
+      color: var(--color-accent-dark);
+    }
+
+    article.blog-post p {
+      margin-bottom: var(--spacing-md);
+    }
+
+    @media (max-width: 900px) {
+      main {
+        flex-direction: column;
+        max-width: 90vw;
+      }
+      aside.related-articles {
+        width: 100%;
+        margin-bottom: var(--spacing-lg);
+      }
+    }
+
+    @media (max-width: 600px) {
+      header,
+      footer {
+        flex-direction: column;
+        gap: var(--spacing-sm);
+        text-align: center;
+      }
+    }
+  </style>
+</head>
+<body>
+  <header role="banner">
+    <h1>CS Notes</h1>
+    <button class="theme-toggle" aria-label="Toggle dark mode" title="Toggle dark mode">
+      <i class="fas fa-moon" id="theme-icon"></i>
+    </button>
+  </header>
+
+  <main role="main">
+    <aside class="related-articles" aria-label="Related Articles">
+      <h2>Related Articles</h2>
+      <ul>
+        <li><a href="#">Process Scheduling</a></li>
+        <li><a href="#">Semaphores & Mutexes</a></li>
+        <li><a href="#">Race Conditions</a></li>
+        <li><a href="#">Banker’s Algorithm</a></li>
+        <li><a href="#">Resource Allocation Graph</a></li>
+      </ul>
+    </aside>
+
+    <article class="blog-post" aria-labelledby="post-title">
+      <h1 id="post-title">Deadlocks in Operating Systems</h1>
+      <time datetime="2025-10-04">October 4, 2025</time>
+
+      <p>
+        A <strong>deadlock</strong> is a state in an operating system where two or more processes are waiting for resources that are
+        held by each other, and none of them can proceed. This results in an indefinite waiting condition that halts system progress.
+      </p>
+
+      <h2>1. Necessary Conditions</h2>
+      <p>For a deadlock to occur, four conditions must hold simultaneously:</p>
+      <ul>
+        <li><strong>Mutual Exclusion:</strong> At least one resource must be non-shareable.</li>
+        <li><strong>Hold and Wait:</strong> A process holding one resource is waiting for others.</li>
+        <li><strong>No Preemption:</strong> Resources cannot be forcibly taken away.</li>
+        <li><strong>Circular Wait:</strong> A cycle exists where processes wait on each other’s resources.</li>
+      </ul>
+
+      <h2>2. Deadlock Handling Methods</h2>
+      <p>There are four major strategies to handle deadlocks:</p>
+      <ul>
+        <li><strong>Deadlock Prevention:</strong> Ensure one of the four conditions never holds.</li>
+        <li><strong>Deadlock Avoidance:</strong> Use algorithms like Banker’s Algorithm to avoid unsafe states.</li>
+        <li><strong>Deadlock Detection:</strong> Allow deadlocks to occur but detect and recover later.</li>
+        <li><strong>Deadlock Ignorance:</strong> Simply ignore (used in many OS like Linux, assuming deadlocks are rare).</li>
+      </ul>
+
+      <h2>3. Real-World Example</h2>
+      <p>
+        Consider two processes: one holding a printer and waiting for a scanner, while another holds the scanner and waits for the printer. 
+        Neither can proceed—this is a classic deadlock.
+      </p>
+
+      <h2>Summary</h2>
+      <p>
+        Deadlocks are critical to understand for ensuring efficient resource management in operating systems.
+        By learning prevention, avoidance, detection, and recovery techniques, we can design safer and more reliable systems.
+      </p>
+    </article>
+  </main>
+
+  <footer role="contentinfo">
+    <p>© 2025 CS Notes. All rights reserved.</p>
+  </footer>
+
+  <script>
+    const themeToggleBtn = document.querySelector('.theme-toggle');
+    const themeIcon = document.getElementById('theme-icon');
+
+    function setThemeIcon() {
+      if (document.body.classList.contains('dark-mode')) {
+        themeIcon.classList.remove('fa-moon');
+        themeIcon.classList.add('fa-sun');
+        themeToggleBtn.setAttribute('aria-label', 'Switch to light mode');
+        themeToggleBtn.setAttribute('title', 'Switch to light mode');
+      } else {
+        themeIcon.classList.remove('fa-sun');
+        themeIcon.classList.add('fa-moon');
+        themeToggleBtn.setAttribute('aria-label', 'Switch to dark mode');
+        themeToggleBtn.setAttribute('title', 'Switch to dark mode');
+      }
+    }
+
+    themeToggleBtn.addEventListener('click', () => {
+      document.body.classList.toggle('dark-mode');
+      if (document.body.classList.contains('dark-mode')) {
+        localStorage.setItem('theme', 'dark');
+      } else {
+        localStorage.setItem('theme', 'light');
+      }
+      setThemeIcon();
+    });
+
+    document.addEventListener('DOMContentLoaded', () => {
+      const savedTheme = localStorage.getItem('theme');
+      if (savedTheme === 'dark') {
+        document.body.classList.add('dark-mode');
+      }
+      setThemeIcon();
+    });
+  </script>
+</body>
+</html>
