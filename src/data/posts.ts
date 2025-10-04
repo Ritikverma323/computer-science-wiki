@@ -16,6 +16,7 @@ export type Post = {
   excerpt: string;
   date: string;
   image: string;
+  tags: string[];
   comments?: comments[];
 };
 
@@ -28,6 +29,7 @@ export const posts: Post[] = [
     date: "2025-10-01",
     image: "/post1.jpg",
     excerpt: "",
+    tags: ["javascript", "async", "programming", "web-development", "event-loop"],
     content: `
       <p>The <strong>Event Loop</strong> is a fundamental concept for modern JavaScript development...</p>
       <h3>1. The Call Stack</h3>
@@ -81,6 +83,7 @@ export const posts: Post[] = [
     image: "/post2.jpg",
     content: `<p>Ditch the floats! CSS Grid offers a powerful two-dimensional layout...</p>`,
     excerpt: "",
+    tags: ["css", "grid", "layout", "web-development", "frontend"],
     comments: [
       {
         profilePic: "/avatars/user2.jpg",
@@ -97,5 +100,41 @@ export const posts: Post[] = [
         likes: 9,
       },
     ],
+  },
+  {
+    id: 3,
+    title: "React Hooks Best Practices",
+    category: "React",
+    author: "Sarah Johnson",
+    date: "2025-09-25",
+    image: "/post1.jpg",
+    content: `<p>Learn the best practices for using React Hooks effectively...</p>`,
+    excerpt: "",
+    tags: ["react", "hooks", "javascript", "frontend", "web-development"],
+    comments: []
+  },
+  {
+    id: 4,
+    title: "Introduction to Node.js",
+    category: "Backend",
+    author: "Mike Chen",
+    date: "2025-09-20",
+    image: "/post2.jpg",
+    content: `<p>Getting started with Node.js for backend development...</p>`,
+    excerpt: "",
+    tags: ["nodejs", "backend", "javascript", "server", "api"],
+    comments: []
+  },
+  {
+    id: 5,
+    title: "CSS Flexbox vs Grid",
+    category: "CSS",
+    author: "Emma Wilson",
+    date: "2025-09-15",
+    image: "/post1.jpg",
+    content: `<p>Understanding when to use Flexbox vs CSS Grid...</p>`,
+    excerpt: "",
+    tags: ["css", "flexbox", "grid", "layout", "frontend"],
+    comments: []
   }
 ];

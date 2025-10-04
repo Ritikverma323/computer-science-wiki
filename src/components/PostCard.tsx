@@ -8,6 +8,7 @@ type Post = {
   category: string;
   date: string;
   image: string;
+  tags: string[];
 };
 
 type PostCardProps = {
@@ -33,6 +34,18 @@ export default function PostCard({ post }: PostCardProps) {
           <Link href={`/post/${post.id}`}>{post.title}</Link>
         </h3>
         <p>{post.content.replace(/<[^>]+>/g, "").slice(0, 120)}...</p>
+        
+        {/* Tags */}
+        {post.tags && post.tags.length > 0 && (
+          <div className="post-tags">
+            {post.tags.map(tag => (
+              <span key={tag} className="post-tag">
+                {tag}
+              </span>
+            ))}
+          </div>
+        )}
+        
         <time dateTime={post.date}>{post.date}</time>
       </div>
     </article>
