@@ -1,27 +1,31 @@
-
-"use client"; 
+"use client";
 import { useState } from 'react';
 import PostCard from './PostCard';
+import SearchBar from './SearchBar';
+import { Post } from '@/data/posts';
 
-export default function PostList({ posts }) {
+type PostListProps = {
+  posts: Post[];
+};
+
+export default function PostList({ posts }: PostListProps) {
   const [filteredPosts, setFilteredPosts] = useState(posts);
 
-  // Example: filter by category
-  const filterByCategory = (category) => {
+  const filterByCategory = (category: string) => {
     setFilteredPosts(posts.filter((p) => p.category === category));
   };
 
   return (
     <>
-      <div className="mb-4 flex gap-2">
-        <button onClick={() => setFilteredPosts(posts)}>All</button>
-        <button onClick={() => filterByCategory('Tech')}>Tech</button>
-        <button onClick={() => filterByCategory('AI')}>AI</button>
-      </div>
+      {/* 🔍 Search bar */}
+      <SearchBar posts={posts} onSearch={setFilteredPosts} />
 
-      {filteredPosts.map((p) => (
-        <PostCard key={p.id} post={p} />
-      ))}
+      {/* Post listing */}
+      {filteredPosts.length === 0 ? (
+        <p>No posts found.</p>
+      ) : (
+        filteredPosts.map((post) => <PostCard key={post.id} post={post} />)
+      )}
     </>
   );
 }
