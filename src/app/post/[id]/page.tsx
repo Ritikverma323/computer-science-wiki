@@ -43,6 +43,20 @@ export default async function BlogDetail({ params }: BlogDetailProps) {
             className="detail-image"
           />
 
+          {/* Tags for detail page */}
+          {post.tags && post.tags.length > 0 && (
+            <div className="post-detail-tags">
+              <h4>Tags:</h4>
+              <div className="tags-list">
+                {post.tags.map(tag => (
+                  <span key={tag} className="detail-tag">
+                    {tag}
+                  </span>
+                ))}
+              </div>
+            </div>
+          )}
+
           <div
             className="post-body"
             dangerouslySetInnerHTML={{ __html: post.content }}
