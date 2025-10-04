@@ -406,6 +406,144 @@ a:hover {
 
 
 
+/* Visitor Count Styles */
+.visitor-count {
+    background-color: var(--clr-card-bg);
+    border: 1px solid var(--clr-border);
+    border-radius: 0.5rem;
+    padding: var(--space-medium);
+    margin-bottom: 2rem;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.visitor-count-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: var(--space-medium);
+    border-bottom: 2px solid var(--clr-primary);
+    padding-bottom: var(--space-small);
+}
+
+.visitor-count-header h3 {
+    font-size: 1.5rem;
+    color: var(--clr-primary);
+    margin: 0;
+}
+
+.track-visit-btn {
+    background-color: var(--clr-primary);
+    color: white;
+    border: none;
+    padding: 0.5rem 1rem;
+    border-radius: 0.3rem;
+    cursor: pointer;
+    font-size: 0.9rem;
+    transition: background-color 0.3s ease;
+}
+
+.track-visit-btn:hover:not(:disabled) {
+    background-color: var(--clr-link-hover);
+}
+
+.track-visit-btn:disabled {
+    background-color: #6c757d;
+    cursor: not-allowed;
+}
+
+.visitor-stats {
+    display: flex;
+    gap: 2rem;
+    justify-content: space-around;
+}
+
+.stat-item {
+    text-align: center;
+    flex: 1;
+}
+
+.stat-label {
+    display: block;
+    font-size: 0.9rem;
+    color: #6c757d;
+    margin-bottom: 0.25rem;
+}
+
+.stat-value {
+    display: block;
+    font-size: 2rem;
+    font-weight: bold;
+    color: var(--clr-primary);
+}
+
+.visitor-page .visitor-description {
+    font-size: 1.1rem;
+    color: #6c757d;
+    margin-bottom: 2rem;
+    line-height: 1.6;
+}
+
+.visitor-info {
+    background-color: var(--clr-card-bg);
+    border: 1px solid var(--clr-border);
+    border-radius: 0.5rem;
+    padding: var(--space-medium);
+}
+
+.visitor-info h4 {
+    color: var(--clr-primary);
+    margin-bottom: var(--space-small);
+}
+
+.visitor-info ul {
+    list-style-type: disc;
+    padding-left: 1.5rem;
+}
+
+.visitor-report ul {
+    list-style-type: disc;
+    padding-left: 1.5rem;
+}
+
+.visitor-info li,
+.visitor-report li {
+    margin-bottom: 0.5rem;
+    line-height: 1.5;
+}
+
+/* Mobile adjustments for visitor count */
+@media (max-width: 600px) {
+    .visitor-count-header {
+        flex-direction: column;
+        gap: var(--space-small);
+        text-align: center;
+    }
+
+    .visitor-stats {
+        flex-direction: column;
+        gap: var(--space-medium);
+    }
+
+    .stat-value {
+        font-size: 1.5rem;
+    }
+}
+
+/* Simple visitor count for home page */
+.visitor-count-simple {
+    background-color: var(--clr-primary);
+    color: white;
+    padding: 0.5rem 1rem;
+    border-radius: 0.3rem;
+    text-align: center;
+    margin: 1rem 0;
+    font-weight: bold;
+}
+
+.visitor-count-simple strong {
+    color: #ffeb3b;
+}
+
 /* Responsive adjustments for headers and text */
 @media (max-width: 600px) {
     .post-title {
