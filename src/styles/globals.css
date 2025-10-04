@@ -3,18 +3,23 @@
    ---------------------------------------------------------------- */
 :root {
     /* Color Variables - Light Mode Defaults */
-    --clr-primary: #007bff;        /* Blue */
+    --clr-primary: #007bff;
+    /* Blue */
     --clr-text: #333;
     --clr-background: #fff;
     --clr-card-bg: #f8f9fa;
     --clr-border: #ddd;
     --clr-link-hover: #0056b3;
-    
+
     /* Spacing and Font Variables */
-    --font-base-size: 16px;       /* 1rem = 16px */
-    --space-small: 0.5rem;        /* 8px */
-    --space-medium: 1rem;         /* 16px */
-    --space-large: 1.5rem;        /* 24px */
+    --font-base-size: 16px;
+    /* 1rem = 16px */
+    --space-small: 0.5rem;
+    /* 8px */
+    --space-medium: 1rem;
+    /* 16px */
+    --space-large: 1.5rem;
+    /* 24px */
     --max-width: 1200px;
 }
 
@@ -43,7 +48,8 @@ body {
     background-color: var(--clr-background);
     color: var(--clr-text);
     transition: background-color 0.3s, color 0.3s;
-    font-size: 100%; /* Ensures 1rem = 16px */
+    font-size: 100%;
+    /* Ensures 1rem = 16px */
 }
 
 a {
@@ -131,7 +137,8 @@ a:hover {
    ---------------------------------------------------------------- */
 .main-content {
     display: grid;
-    grid-template-columns: 1fr; /* Default: Single column */
+    grid-template-columns: 1fr;
+    /* Default: Single column */
     gap: 2rem;
     padding-top: 2rem;
 }
@@ -139,10 +146,12 @@ a:hover {
 /* Desktop Layout: Two columns (Blog Posts + Sidebar) */
 @media (min-width: 768px) {
     .main-content {
-        grid-template-columns: 3fr 1fr; /* 75% for posts, 25% for sidebar */
+        grid-template-columns: 3fr 1fr;
+        /* 75% for posts, 25% for sidebar */
     }
 
-    .blog-posts, .blog-detail {
+    .blog-posts,
+    .blog-detail {
         grid-column: 1 / 2;
     }
 
@@ -212,6 +221,7 @@ a:hover {
     .post-card {
         flex-direction: column;
     }
+
     .post-card img {
         width: 100%;
         max-height: 200px;
@@ -298,11 +308,248 @@ a:hover {
     font-size: 1.1rem;
 }
 
+
+/* 🔎 Search Bar Styles */
+.search-container {
+    margin-bottom: 2rem;
+    display: flex;
+    justify-content: center;
+    width: 100%;
+}
+
+.search-input {
+    width: 100%;
+    max-width: 100%;
+
+    padding: 0.75rem 1rem;
+    font-size: 1rem;
+    border: 1px solid #ddd;
+    border-radius: 0.5rem;
+    margin: 2rem 0rem;
+    outline: none;
+    transition: all 0.2s ease;
+}
+
+/* Focus effect */
+.search-input:focus {
+    border-color: #0070f3;
+    /* Next.js blue */
+    box-shadow: 0 0 0 3px rgba(0, 112, 243, 0.2);
+}
+
+/* Optional: Dark mode support */
+.dark .search-input {
+    background-color: #1e1e1e;
+    border-color: #444;
+    color: #fff;
+}
+
+
+/* comment section*/
+.comment-section {
+    margin-top: 3rem;
+}
+.comment-list {
+    margin-top: 1rem;
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+}
+
+
+.comment-item {
+    display: flex;
+    align-items: flex-start;
+    gap: 0.8rem;
+    padding-bottom: 1rem;
+}
+
+.comment-avatar {
+    width: 45px;
+    height: 45px;
+    border-radius: 50%;
+    object-fit: cover;
+}
+
+.comment-content {
+    flex: 1;
+}
+
+.comment-content strong {
+    display: block;
+    margin-bottom: 0.3rem;
+}
+
+.comment-content p {
+    margin: 0.2rem 0;
+}
+
+.comment-meta {
+    font-size: 0.8rem;
+    display: flex;
+    gap: 0.8rem;
+    margin-top: 0.3rem;
+}
+
+.comment-replies {
+    margin-left: 2.5rem;
+    margin-top: 0.6rem;
+    padding-left: 1rem;
+}
+
+.no-comments {
+    font-size: 0.9rem;
+    margin-top: 0.5rem;
+}
+
+
+
+
+
+/* Visitor Count Styles */
+.visitor-count {
+    background-color: var(--clr-card-bg);
+    border: 1px solid var(--clr-border);
+    border-radius: 0.5rem;
+    padding: var(--space-medium);
+    margin-bottom: 2rem;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.visitor-count-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: var(--space-medium);
+    border-bottom: 2px solid var(--clr-primary);
+    padding-bottom: var(--space-small);
+}
+
+.visitor-count-header h3 {
+    font-size: 1.5rem;
+    color: var(--clr-primary);
+    margin: 0;
+}
+
+.track-visit-btn {
+    background-color: var(--clr-primary);
+    color: white;
+    border: none;
+    padding: 0.5rem 1rem;
+    border-radius: 0.3rem;
+    cursor: pointer;
+    font-size: 0.9rem;
+    transition: background-color 0.3s ease;
+}
+
+.track-visit-btn:hover:not(:disabled) {
+    background-color: var(--clr-link-hover);
+}
+
+.track-visit-btn:disabled {
+    background-color: #6c757d;
+    cursor: not-allowed;
+}
+
+.visitor-stats {
+    display: flex;
+    gap: 2rem;
+    justify-content: space-around;
+}
+
+.stat-item {
+    text-align: center;
+    flex: 1;
+}
+
+.stat-label {
+    display: block;
+    font-size: 0.9rem;
+    color: #6c757d;
+    margin-bottom: 0.25rem;
+}
+
+.stat-value {
+    display: block;
+    font-size: 2rem;
+    font-weight: bold;
+    color: var(--clr-primary);
+}
+
+.visitor-page .visitor-description {
+    font-size: 1.1rem;
+    color: #6c757d;
+    margin-bottom: 2rem;
+    line-height: 1.6;
+}
+
+.visitor-info {
+    background-color: var(--clr-card-bg);
+    border: 1px solid var(--clr-border);
+    border-radius: 0.5rem;
+    padding: var(--space-medium);
+}
+
+.visitor-info h4 {
+    color: var(--clr-primary);
+    margin-bottom: var(--space-small);
+}
+
+.visitor-info ul {
+    list-style-type: disc;
+    padding-left: 1.5rem;
+}
+
+.visitor-report ul {
+    list-style-type: disc;
+    padding-left: 1.5rem;
+}
+
+.visitor-info li,
+.visitor-report li {
+    margin-bottom: 0.5rem;
+    line-height: 1.5;
+}
+
+/* Mobile adjustments for visitor count */
+@media (max-width: 600px) {
+    .visitor-count-header {
+        flex-direction: column;
+        gap: var(--space-small);
+        text-align: center;
+    }
+
+    .visitor-stats {
+        flex-direction: column;
+        gap: var(--space-medium);
+    }
+
+    .stat-value {
+        font-size: 1.5rem;
+    }
+}
+
+/* Simple visitor count for home page */
+.visitor-count-simple {
+    background-color: var(--clr-primary);
+    color: white;
+    padding: 0.5rem 1rem;
+    border-radius: 0.3rem;
+    text-align: center;
+    margin: 1rem 0;
+    font-weight: bold;
+}
+
+.visitor-count-simple strong {
+    color: #ffeb3b;
+}
+
 /* Responsive adjustments for headers and text */
 @media (max-width: 600px) {
     .post-title {
         font-size: 1.8rem;
     }
+
     .post-body h3 {
         font-size: 1.4rem;
     }

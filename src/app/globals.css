@@ -24,3 +24,36 @@ body {
   color: var(--foreground);
   font-family: Arial, Helvetica, sans-serif;
 }
+
+
+/* 🔎 Search Bar Styles */
+.search-container {
+  margin-bottom: 2rem;
+  display: flex;
+  justify-content: center;
+  width: 100%;
+}
+
+.search-input {
+  width: 100%;
+  max-width: 500px;
+  padding: 0.75rem 1rem;
+  font-size: 1rem;
+  border: 1px solid #ddd;
+  border-radius: 0.5rem;
+  outline: none;
+  transition: all 0.2s ease;
+}
+
+/* Focus effect */
+.search-input:focus {
+  border-color: #0070f3; /* Next.js blue */
+  box-shadow: 0 0 0 3px rgba(0, 112, 243, 0.2);
+}
+
+/* Dark mode support */
+.dark .search-input {
+  background-color: #1e1e1e;
+  border-color: #444;
+  color: #fff;
+}
