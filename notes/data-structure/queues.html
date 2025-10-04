@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Queues - Data Structure Notes</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      margin: 0;
+      padding: 0;
+      background: #f9fafc;
+      color: #333;
+      line-height: 1.6;
+    }
+
+    header {
+      background: #4a90e2;
+      color: white;
+      padding: 1rem;
+      text-align: center;
+    }
+
+    main {
+      max-width: 900px;
+      margin: 2rem auto;
+      background: white;
+      padding: 2rem;
+      border-radius: 12px;
+      box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+    }
+
+    h1, h2 {
+      color: #2c3e50;
+    }
+
+    h1 {
+      border-bottom: 2px solid #4a90e2;
+      padding-bottom: 0.5rem;
+    }
+
+    ul {
+      margin-left: 1.5rem;
+    }
+
+    .highlight {
+      background: #eaf4ff;
+      padding: 0.5rem;
+      border-left: 4px solid #4a90e2;
+      margin: 1rem 0;
+      border-radius: 4px;
+    }
+
+    footer {
+      text-align: center;
+      padding: 1rem;
+      margin-top: 2rem;
+      background: #f1f1f1;
+      font-size: 0.9rem;
+      color: #555;
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <h1>Queue Data Structure</h1>
+  </header>
+
+  <main>
+    <section>
+      <h2>What is a Queue?</h2>
+      <p>
+        A <strong>Queue</strong> is a linear data structure that follows the
+        <strong>FIFO (First In, First Out)</strong> principle. The first element inserted is the first to be removed.
+      </p>
+      <div class="highlight">
+        Think of it like a line of people waiting at a ticket counter: the person who comes first is served first.
+      </div>
+    </section>
+
+    <section>
+      <h2>Features of Queues</h2>
+      <ul>
+        <li>Linear data structure with sequential order.</li>
+        <li>Follows FIFO (First In, First Out).</li>
+        <li>Insertion happens at the <strong>rear</strong>.</li>
+        <li>Deletion happens at the <strong>front</strong>.</li>
+        <li>Efficient for managing tasks in order of arrival.</li>
+      </ul>
+    </section>
+
+    <section>
+      <h2>Types of Queues</h2>
+      <ul>
+        <li><strong>Simple Queue</strong> – Basic FIFO structure.</li>
+        <li><strong>Circular Queue</strong> – Connects end to front to utilize space efficiently.</li>
+        <li><strong>Priority Queue</strong> – Elements are dequeued based on priority, not order.</li>
+        <li><strong>Deque (Double Ended Queue)</strong> – Insertion and deletion allowed from both ends.</li>
+      </ul>
+    </section>
+
+    <section>
+      <h2>Operations on Queues</h2>
+      <ul>
+        <li><strong>Enqueue</strong> – Insert an element at the rear.</li>
+        <li><strong>Dequeue</strong> – Remove an element from the front.</li>
+        <li><strong>Peek/Front</strong> – Get the first element without removing it.</li>
+        <li><strong>isEmpty()</strong> – Check if the queue is empty.</li>
+        <li><strong>isFull()</strong> – Check if the queue is full (in case of fixed size).</li>
+      </ul>
+    </section>
+
+    <section>
+      <h2>Applications of Queues</h2>
+      <ul>
+        <li>Task scheduling in operating systems (CPU scheduling, disk scheduling).</li>
+        <li>Managing requests in web servers.</li>
+        <li>Printer task management (jobs handled in order).</li>
+        <li>Breadth-First Search (BFS) in graphs.</li>
+        <li>Handling asynchronous data (IO Buffers, Message Queues).</li>
+      </ul>
+    </section>
+  </main>
+
+  
+</body>
+</html>
