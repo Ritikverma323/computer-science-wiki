@@ -5,6 +5,8 @@ import BlogLayout from '../components/BlogLayout';
 export const dynamic = 'force-static';
 
 export default function Home() {
+  const [filteredPosts, setFilteredPosts] = useState(posts);
+
   return (
     <BlogLayout title='Latest Posts' headingLevel={1}>
       {posts.map((p) => (

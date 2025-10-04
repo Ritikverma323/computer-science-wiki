@@ -85,6 +85,7 @@ export default function BlogDetail({ params }: BlogDetailProps) {
             dangerouslySetInnerHTML={{ __html: post.content }}
           />
         </article>
+        <Comments comments={post.comments} />
       </section>
       <Sidebar />
     </>
